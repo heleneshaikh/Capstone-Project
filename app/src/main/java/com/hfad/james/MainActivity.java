@@ -1,94 +1,52 @@
 package com.hfad.james;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.SparseArray;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.TextView;
-
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
-
-import java.io.IOException;
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.camera_preview)
-    SurfaceView cameraPreview;
-    @BindView(R.id.qr_result)
-    TextView qrResult;
+    @BindView(R.id.scan_btn)
+    Button scanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        createCameraSource();
     }
 
-    private void createCameraSource() {
-        final BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.QR_CODE)
-                .build();
-        final CameraSource cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(640, 480)
-                .setAutoFocusEnabled(true)
-                .build();
-
-        //know when to start drawing previews
-        cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                try {
-                    cameraSource.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                cameraSource.stop();
-            }
-        });
-
-        // tell the BarcodeDetector what it should do when it detects a QR code.
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-            @Override
-            public void release() {
-
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections<Barcode> detections) {
-                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-                if (barcodes.size() != 0) {
-                    qrResult.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            qrResult.setText(barcodes.valueAt(0).displayValue);
-                        }
-                    });
-                }
-            }
-        });
-
+    public void onClickScan(View view) {
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        intentIntegrator.setPrompt("scan");
+        intentIntegrator.setCameraId(0);
+        intentIntegrator.setBeepEnabled(true);
+        intentIntegrator.setBarcodeImageEnabled(false);
+        intentIntegrator.initiateScan();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (intentResult != null) {
+            if (intentResult.getContents() == null) {
+                Toast toast = Toast.makeText(this, "you cancelled the scan", Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                Toast toast = Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

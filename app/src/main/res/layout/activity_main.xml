@@ -8,15 +8,18 @@
     android:padding="16dp"
     tools:context="com.hfad.james.MainActivity">
 
-    <SurfaceView
-        android:id="@+id/camera_preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+   <TextView
+       android:id="@+id/scan_tv"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Scan QR code"/>
 
-    <TextView
-        android:id="@+id/qr_result"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:layout_gravity="center_horizontal" />
+        android:text="scan"
+        android:id="@+id/scan_btn"
+        android:onClick="onClickScan"/>
+
+
 </LinearLayout>
