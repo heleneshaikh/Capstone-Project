@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">James</string>
     <string name="scan_qr_code">SCAN QR CODE</string>
+    <string name="scan_code">Scan the restaurant\'s QR code</string>
+    <string name="drinks_btn">DRINKS</string>
+    <string name="food_btn">FOOD</string>
+    <string name="icon_reading_description">icon displaying a phone reading a QR code</string>
+    <string name="welcome_to">Welcome to Snizzles! Please make your order.</string>
 </resources>

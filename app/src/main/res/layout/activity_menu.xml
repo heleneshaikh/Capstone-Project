@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hfad.james.MenuActivity">
+
+    <include layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/include" />
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/welcome_to"
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:textSize="25sp"
+        android:minLines="2"/>
+
+    <Button
+        android:id="@+id/drinks_btn"
+        android:layout_width="@dimen/menu_btn_size"
+        android:layout_height="@dimen/menu_btn_size"
+        android:text="@string/drinks_btn"
+        style="@style/buttons"
+        android:maxLines="1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/food_button"
+        android:layout_width="@dimen/menu_btn_size"
+        android:layout_height="@dimen/menu_btn_size"
+        android:text="@string/food_btn"
+        style="@style/buttons"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/drinks_btn"
+        android:layout_alignStart="@+id/drinks_btn"
+        android:layout_marginBottom="48dp" />
+
+</RelativeLayout>
