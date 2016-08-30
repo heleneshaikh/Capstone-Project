@@ -23,12 +23,12 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onClickOpenDrinks(View view) {
-        Intent intent = new Intent(this, FoodActivity.class);
+        Intent intent = new Intent(this, DrinkActivity.class);
         startActivity(intent);
     }
 
     public void onClickOpenFood(View view) {
-        Intent intent = new Intent(this, DrinkActivity.class);
+        Intent intent = new Intent(this, FoodActivity.class);
         startActivity(intent);
     }
 }

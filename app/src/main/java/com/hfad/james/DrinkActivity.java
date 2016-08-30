@@ -18,15 +18,19 @@ public class DrinkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drink);
 
         ButterKnife.bind(this);
-        toolbar.setTitle("DRINKS");
 
+        toolbar.setTitle(R.string.toolbar_drinks);
+
+        createFragment();
+    }
+
+    private void createFragment() {
         DrinkFragment drinkFragment = new DrinkFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         transaction.addToBackStack(null);
         transaction.replace(R.id.drink_container, drinkFragment);
         transaction.commit();
-
     }
 
 }
