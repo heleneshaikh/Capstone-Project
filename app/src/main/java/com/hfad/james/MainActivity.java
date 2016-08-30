@@ -53,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
                 if (!isTablet) {
                     Intent intent = new Intent(this, MenuActivity.class);
                     startActivity(intent);
+                } else {
+                    //start tabletmenuactivity
                 }
-                Toast toast = Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_LONG);
-                toast.show();
+//                Toast toast = Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_LONG);
+//                toast.show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
