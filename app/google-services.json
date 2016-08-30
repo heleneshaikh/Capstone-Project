@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "773542628917",
+    "firebase_url": "https://james-5d3ae.firebaseio.com",
+    "project_id": "james-5d3ae",
+    "storage_bucket": "james-5d3ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773542628917:android:de359068bc270b14",
+        "android_client_info": {
+          "package_name": "com.hfad.james"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773542628917-5rd6bpf81b49cdqnfe3b9p56bak15npv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANZkhVUhtOObfgfxxKRJXpu4OT3U0px6s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
