@@ -6,9 +6,11 @@
     <string name="food_btn">FOOD</string>
     <string name="icon_reading_description">icon displaying a phone reading a QR code</string>
     <string name="welcome_to">Welcome to Snizzles! Please make your order.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="toolbar_drinks">DRINKS</string>
     <string name="toolbar_food">FOOD</string>
+    <string name="add_item_description">add item</string>
+    <string name="remove_item_description">remove item</string>
+    <string name="btn_minus" translatable="false">-</string>
+    <string name="btn_plus" translatable="false">+</string>
 </resources>

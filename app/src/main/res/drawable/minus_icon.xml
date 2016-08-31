@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="16"
+    android:viewportHeight="16" android:width="16dp" android:height="16dp">
+    <group android:name="Group" android:translateX="-48.0" android:translateY="-528.0">
+        <path android:name="Oval 210 copy 2"
+            android:pathData="M56,544 C51.5817218,544 48,540.418278 48,536 C48,531.581722 51.5817218,528 56,528 C60.4182782,528 64,531.581722 64,536 C64,540.418278 60.4182782,544 56,544 Z M52,535 L52,537 L60,537 L60,535 Z M52,535"
+            android:fillColor="#00BCD4" />
+    </group>
+</vector>

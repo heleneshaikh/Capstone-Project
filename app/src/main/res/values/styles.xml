@@ -17,5 +17,12 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
+    <style name="menu_buttons" parent="buttons">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_weight">0.8</item>
+    </style>
+
 
 </resources>
