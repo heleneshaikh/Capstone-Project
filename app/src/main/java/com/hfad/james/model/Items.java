@@ -3,15 +3,15 @@ package com.hfad.james.model;
 /**
  * Created by heleneshaikh on 01/09/16.
  */
-public class Appetizers {
+public class Items {
     float amount;
     float price;
     String title;
 
-    public Appetizers() {
+    public Items() {
     }
 
-    public Appetizers(float amount, float price, String title) {
+    public Items(float amount, float price, String title) {
         this.amount = amount;
         this.price = price;
         this.title = title;
@@ -39,5 +39,9 @@ public class Appetizers {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String toString() {
+        return title;
     }
 }

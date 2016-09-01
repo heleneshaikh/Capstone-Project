@@ -17,30 +17,12 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FoodFragment extends Fragment {
-    @BindView(R.id.food_recycler)
-    RecyclerView recyclerView;
-    private DatabaseReference database;
+public class FoodFragment extends ItemFragment {
+
 
     public FoodFragment() {
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
-        ButterKnife.bind(this, view);
-
-        database = FirebaseDatabase.getInstance().getReference();
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-        Adapter adapter = new Adapter();
-        recyclerView.setAdapter(adapter);
-
-        return view;
-    }
 
 }
