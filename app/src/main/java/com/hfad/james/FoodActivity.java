@@ -33,4 +33,10 @@ public class FoodActivity extends AppCompatActivity {
         transaction.replace(R.id.food_container, foodFragment);
         transaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

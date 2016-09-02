@@ -32,8 +32,6 @@ public class ItemFragment extends Fragment {
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_food, container, false);
         ButterKnife.bind(this, view);
 
-        ref = new Firebase("https://james-5d3ae.firebaseio.com/");
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -41,6 +39,10 @@ public class ItemFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    public void createReference(String url) {
+        ref = new Firebase(url);
     }
 
 }
