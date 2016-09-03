@@ -81,7 +81,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final Adapter.ViewHolder holder, final int position) {
         final Items item = itemList.get(position);
         CardView cardView = holder.cardView;
         ButterKnife.bind(this, cardView);
