@@ -37,15 +37,7 @@ public class ItemFragment extends Fragment {
         Adapter adapter = new Adapter(ref);
         recyclerView.setAdapter(adapter);
 
-        setHasOptionsMenu(true);
-
         return view;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_main, menu);
     }
 
     public void createReference(String url) {

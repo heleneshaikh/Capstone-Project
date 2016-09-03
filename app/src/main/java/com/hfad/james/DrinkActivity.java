@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +32,12 @@ public class DrinkActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.replace(R.id.drink_container, drinkFragment);
         transaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

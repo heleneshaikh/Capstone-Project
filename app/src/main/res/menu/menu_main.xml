@@ -3,8 +3,8 @@
     <item
         android:id="@+id/shopping_cart"
         android:icon="@drawable/ic_shopping_cart"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:orderInCategory="1"
-        android:title="shopping cart">
+        android:title="@string/shopping_cart">
     </item>
 </menu>
