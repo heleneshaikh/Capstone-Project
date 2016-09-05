@@ -19,7 +19,10 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
-        toolbar.setTitle(R.string.app_name);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            toolbar.setTitle(R.string.app_name);
+        }
     }
 
     public void onClickOpenDrinks(View view) {

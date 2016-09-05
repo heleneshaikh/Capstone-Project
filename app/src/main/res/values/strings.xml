@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">James</string>
+    <string name="app_name" translatable="false">James</string>
     <string name="scan_qr_code">SCAN QR CODE</string>
     <string name="scan_code">Scan the restaurant\'s QR code</string>
     <string name="drinks_btn">DRINKS</string>
@@ -14,4 +14,5 @@
     <string name="btn_minus" translatable="false">-</string>
     <string name="btn_plus" translatable="false">+</string>
     <string name="shopping_cart">shopping_cart</string>
+    <string name="order_toolbar">ORDER</string>
 </resources>
