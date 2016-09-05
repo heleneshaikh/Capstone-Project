@@ -6,17 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.hfad.james.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
+    <include layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        style="@style/AppTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
+        android:id="@+id/include" />
 
     <Button
         android:id="@+id/scan_btn"

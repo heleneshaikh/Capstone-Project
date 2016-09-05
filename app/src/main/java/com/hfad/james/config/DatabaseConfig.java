@@ -1,4 +1,4 @@
-package com.hfad.james;
+package com.hfad.james.config;
 
 import android.app.Application;
 

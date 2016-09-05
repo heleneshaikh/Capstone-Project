@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.scan_btn)
     Button scanButton;
-    @BindView(R.id.toolbar)
+    @BindView(R.id.include)
     Toolbar toolbar;
 
     @Override
