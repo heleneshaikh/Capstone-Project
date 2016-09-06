@@ -8,21 +8,22 @@
     <application
         android:name=".config.DatabaseConfig"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- <activity android:name=".MenuActivity" /> -->
+         <activity android:name=".MenuActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".DrinkActivity" />
-        <activity android:name=".ShoppingCartActivity"/>
+        <activity android:name=".ShoppingCartActivity" />
+        <activity android:name=".TabletMenuActivity"/>
     </application>
 
 </manifest>
