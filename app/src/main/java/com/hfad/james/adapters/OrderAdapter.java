@@ -1,6 +1,7 @@
 package com.hfad.james.adapters;
 
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -39,19 +41,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     Button plusButton;
     @BindView(R.id.minus_button)
     Button minusButton;
-    int zeroAmount;
 
     public OrderAdapter(Firebase ref) {
-        ref.addValueEventListener(new ValueEventListener() {
+
+        ref.child("Food").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                key = snapshot.getKey();
+            public void onDataChange(DataSnapshot snapshot) { //contains Drinks and Food
                 itemList.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Items items = dataSnapshot.getValue(Items.class);
-                    if (items.getAmount() != 0) {
-                        itemList.add(items);
-                    }
+                for (DataSnapshot datasnapshot : snapshot.getChildren()) { //contains Drinks and Food
+                    Items items = datasnapshot.getValue(Items.class);
+                    itemList.add(items);
                 }
                 notifyDataSetChanged();
             }
@@ -60,7 +59,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             public void onCancelled(FirebaseError firebaseError) {
                 Log.v("error", firebaseError.getMessage());
             }
+
         });
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

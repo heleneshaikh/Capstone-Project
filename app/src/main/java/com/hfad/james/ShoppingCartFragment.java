@@ -32,7 +32,7 @@ public class ShoppingCartFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         ButterKnife.bind(this, view);
-        Firebase ref = new Firebase("https://james-5d3ae.firebaseio.com/Food");
+        Firebase ref = new Firebase("https://james-5d3ae.firebaseio.com/");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
