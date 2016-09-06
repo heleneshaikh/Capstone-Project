@@ -22,7 +22,7 @@ public class DrinkActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            toolbar.setTitle(R.string.toolbar_drinks);
+            getSupportActionBar().setTitle(R.string.toolbar_drinks);
         }
         createFragment();
     }
