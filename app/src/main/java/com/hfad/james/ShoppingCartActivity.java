@@ -33,4 +33,10 @@ public class ShoppingCartActivity extends AppCompatActivity {
         transaction.replace(R.id.shopping_cart_container, shoppingCartFragment);
         transaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
