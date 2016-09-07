@@ -42,15 +42,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @BindView(R.id.minus_button)
     Button minusButton;
 
-    public OrderAdapter(Firebase ref) {
 
-        ref.child("Food").addValueEventListener(new ValueEventListener() {
+
+    public OrderAdapter(Firebase ref) {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) { //contains Drinks and Food
+            public void onDataChange(DataSnapshot snapshot) {
                 itemList.clear();
-                for (DataSnapshot datasnapshot : snapshot.getChildren()) { //contains Drinks and Food
+                for (DataSnapshot datasnapshot : snapshot.child("Food").getChildren()) {
                     Items items = datasnapshot.getValue(Items.class);
-                    itemList.add(items);
+                    if (items.getAmount() != 0) {
+                        itemList.add(items);
+                    }
+                }
+                for (DataSnapshot datasnapshot : snapshot.child("Drinks").getChildren()) {
+                    Items items = datasnapshot.getValue(Items.class);
+                    if (items.getAmount() != 0) {
+                        itemList.add(items);
+                    }
                 }
                 notifyDataSetChanged();
             }
@@ -59,9 +68,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             public void onCancelled(FirebaseError firebaseError) {
                 Log.v("error", firebaseError.getMessage());
             }
-
         });
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -90,6 +97,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         amount.setText("" + (int) item.getAmount());
         price.setText(String.valueOf(item.getPrice()) + "€");
 
+
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +105,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 Firebase rootRef = new Firebase(builder.toString());
                 double amount = item.getAmount() - 1;
                 rootRef.setValue(amount);
+                double basePrice = item.getPrice();
+                double newPrice = basePrice * (amount - 1);
+                item.setTotalAmount(newPrice);
             }
         });
 
@@ -107,7 +118,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 Firebase rootRef = new Firebase(builder.toString());
                 double amount = item.getAmount() + 1;
                 rootRef.setValue(amount);
+                double basePrice = item.getPrice();
+                double newPrice = basePrice * (amount - 1);
+                item.setTotalAmount(newPrice);
             }
+
         });
     }
 

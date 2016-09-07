@@ -11,6 +11,7 @@
     card_view:cardElevation="0dp">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingRight="10dp"
@@ -58,6 +59,16 @@
             android:contentDescription="@string/add_item_description"
             android:src="@drawable/plus_icon"
             android:text="@string/btn_plus" />
+
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="test"/>
 
     </LinearLayout>
 

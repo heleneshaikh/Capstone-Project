@@ -7,6 +7,7 @@ public class Items {
     double amount;
     double price;
     String title;
+    double totalAmount;
 
     public Items() {
     }
@@ -35,4 +36,11 @@ public class Items {
         this.title = title;
     }
 
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 }
