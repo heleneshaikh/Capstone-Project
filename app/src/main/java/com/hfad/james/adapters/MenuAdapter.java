@@ -87,6 +87,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
         calculatePricePerItem(item);
 
+
+
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +116,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         item.setTotalPricePerItem(newPrice);
         total.setText(""+item.getTotalPricePerItem() + "€");
     }
-
 
     @NonNull
     private Uri.Builder getBuilder(ViewHolder holder) {

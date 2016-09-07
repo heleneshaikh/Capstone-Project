@@ -41,6 +41,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     ArrayList<String> keys = new ArrayList<>();
     @BindView(R.id.total)
     TextView total;
+    double totalPrice = 0;
+    ArrayList<Double> priceList = new ArrayList<>();
+
 
 
     public OrderAdapter(Firebase ref) {
@@ -97,6 +100,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         item_title.setText(item.getTitle());
         amount.setText("" + (int) item.getAmount());
         price.setText(String.valueOf(item.getPrice()) + "€");
+        item.setTotalPricePerItem(item.getPrice());
 
         calculatePricePerItem(item);
 
@@ -125,6 +129,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 item.setTotalPricePerItem(newPrice);
             }
         });
+        for (Items items : itemList) {
+            priceList.add(items.getTotalPricePerItem());
+        }
+        for (int i = 0; i < priceList.size(); i++) {
+            Log.v("price", priceList.get(i).toString());
+        }
     }
 
     private void calculatePricePerItem(Items item) {
@@ -132,6 +142,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         double newPrice = basePrice * item.getAmount();
         item.setTotalPricePerItem(newPrice);
         total.setText("" + item.getTotalPricePerItem() + "€");
+
+
     }
 
     @NonNull
