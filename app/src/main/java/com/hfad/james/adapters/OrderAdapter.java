@@ -30,7 +30,6 @@ import butterknife.ButterKnife;
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     ArrayList<Items> itemList = new ArrayList<>();
-    String key;
     @BindView(R.id.menu_item)
     public TextView item_title;
     @BindView(R.id.amount)
@@ -134,7 +133,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         for (int i = 0; i < keys.size(); i++) {
             builder.scheme("https")
                     .authority("james-5d3ae.firebaseio.com")
-                    .appendPath("Food")
+                    .appendPath(keys.get(i))
                     .appendPath(String.valueOf(position))
                     .appendPath("amount")
                     .build();
