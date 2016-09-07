@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.OrderAdapter;
+import com.hfad.james.model.Items;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +29,8 @@ import butterknife.ButterKnife;
 public class ShoppingCartFragment extends Fragment {
     @BindView(R.id.order_recycler)
     RecyclerView recyclerView;
+    @BindView(R.id.total_amount_tv)
+    TextView totalPrice;
 
     public ShoppingCartFragment() {
     }
@@ -42,6 +47,11 @@ public class ShoppingCartFragment extends Fragment {
 
         OrderAdapter adapter = new OrderAdapter(ref);
         recyclerView.setAdapter(adapter);
+
+        Items items = new Items();
+        double total = items.getTotalPrice();
+        totalPrice.setText("" + total);
+
 
 
         return view;

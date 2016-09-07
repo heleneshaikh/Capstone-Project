@@ -1,5 +1,6 @@
 package com.hfad.james.model;
 
+
 /**
  * Created by heleneshaikh on 01/09/16.
  */
@@ -7,7 +8,9 @@ public class Items {
     double amount;
     double price;
     String title;
-    double totalAmount;
+    double totalPricePerItem;
+    double totalPrice;
+
 
     public Items() {
     }
@@ -36,11 +39,19 @@ public class Items {
         this.title = title;
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
+    public double getTotalPricePerItem() {
+        return totalPricePerItem;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setTotalPricePerItem(double totalPricePerItem) {
+        this.totalPricePerItem = totalPricePerItem;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

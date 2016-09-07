@@ -1,7 +1,6 @@
 package com.hfad.james.adapters;
 
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -41,6 +39,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @BindView(R.id.minus_button)
     Button minusButton;
     ArrayList<String> keys = new ArrayList<>();
+    @BindView(R.id.total)
+    TextView total;
+
 
     public OrderAdapter(Firebase ref) {
         ref.addValueEventListener(new ValueEventListener() {
@@ -97,6 +98,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         amount.setText("" + (int) item.getAmount());
         price.setText(String.valueOf(item.getPrice()) + "€");
 
+        calculatePricePerItem(item);
 
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +109,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 rootRef.setValue(amount);
                 double basePrice = item.getPrice();
                 double newPrice = basePrice * (amount - 1);
-                item.setTotalAmount(newPrice);
+                item.setTotalPricePerItem(newPrice);
             }
         });
 
@@ -120,10 +122,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 rootRef.setValue(amount);
                 double basePrice = item.getPrice();
                 double newPrice = basePrice * (amount - 1);
-                item.setTotalAmount(newPrice);
+                item.setTotalPricePerItem(newPrice);
             }
-
         });
+    }
+
+    private void calculatePricePerItem(Items item) {
+        double basePrice = item.getPrice();
+        double newPrice = basePrice * item.getAmount();
+        item.setTotalPricePerItem(newPrice);
+        total.setText(""+item.getTotalPricePerItem() + "€");
     }
 
     @NonNull
