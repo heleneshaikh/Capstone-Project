@@ -48,15 +48,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 itemList.clear();
+                keys.add("Food");
                 for (DataSnapshot datasnapshot : snapshot.child("Food").getChildren()) {
-                    keys.add("Food");
                     Items items = datasnapshot.getValue(Items.class);
                     if (items.getAmount() != 0) {
                         itemList.add(items);
                     }
                 }
+                keys.add("Drinks");
                 for (DataSnapshot datasnapshot : snapshot.child("Drinks").getChildren()) {
-                    keys.add("Drinks");
                     Items items = datasnapshot.getValue(Items.class);
                     if (items.getAmount() != 0) {
                         itemList.add(items);
@@ -131,21 +131,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         double basePrice = item.getPrice();
         double newPrice = basePrice * item.getAmount();
         item.setTotalPricePerItem(newPrice);
-        total.setText(""+item.getTotalPricePerItem() + "€");
+        total.setText("" + item.getTotalPricePerItem() + "€");
     }
 
     @NonNull
     private Uri.Builder getBuilder(ViewHolder holder) {
         int position = holder.getAdapterPosition();
         Uri.Builder builder = new Uri.Builder();
-        for (int i = 0; i < keys.size(); i++) {
-            builder.scheme("https")
-                    .authority("james-5d3ae.firebaseio.com")
-                    .appendPath(keys.get(i))
-                    .appendPath(String.valueOf(position))
-                    .appendPath("amount")
-                    .build();
-        }
+        builder.scheme("https")
+                .authority("james-5d3ae.firebaseio.com")
+                .appendPath("Food")
+                .appendPath(String.valueOf(position))
+                .appendPath("amount")
+                .build();
 
         return builder;
     }
