@@ -36,6 +36,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @BindView(R.id.minus_button)
     Button minusButton;
     public String key;
+    @BindView(R.id.total)
+    TextView total;
 
 
     public MenuAdapter(Firebase ref) {
@@ -83,6 +85,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         item_title.setText(item.getTitle());
         amount.setText("" + (int) item.getAmount());
         price.setText(String.valueOf(item.getPrice()) + "€");
+
+        double basePrice = item.getPrice();
+        double newPrice = basePrice * item.getAmount();
+        item.setTotalAmount(newPrice);
+        total.setText(""+item.getTotalAmount());
 
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override

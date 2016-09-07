@@ -41,8 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     Button plusButton;
     @BindView(R.id.minus_button)
     Button minusButton;
-
-
+    ArrayList<String> keys = new ArrayList<>();
 
     public OrderAdapter(Firebase ref) {
         ref.addValueEventListener(new ValueEventListener() {
@@ -50,12 +49,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             public void onDataChange(DataSnapshot snapshot) {
                 itemList.clear();
                 for (DataSnapshot datasnapshot : snapshot.child("Food").getChildren()) {
+                    keys.add("Food");
                     Items items = datasnapshot.getValue(Items.class);
                     if (items.getAmount() != 0) {
                         itemList.add(items);
                     }
                 }
                 for (DataSnapshot datasnapshot : snapshot.child("Drinks").getChildren()) {
+                    keys.add("Drinks");
                     Items items = datasnapshot.getValue(Items.class);
                     if (items.getAmount() != 0) {
                         itemList.add(items);
@@ -130,12 +131,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     private Uri.Builder getBuilder(ViewHolder holder) {
         int position = holder.getAdapterPosition();
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme("https")
-                .authority("james-5d3ae.firebaseio.com")
-                .appendPath(key)
-                .appendPath(String.valueOf(position))
-                .appendPath("amount")
-                .build();
+        for (int i = 0; i < keys.size(); i++) {
+            builder.scheme("https")
+                    .authority("james-5d3ae.firebaseio.com")
+                    .appendPath("Food")
+                    .appendPath(String.valueOf(position))
+                    .appendPath("amount")
+                    .build();
+        }
+
         return builder;
     }
 
