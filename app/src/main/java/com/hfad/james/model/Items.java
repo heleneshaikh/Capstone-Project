@@ -10,6 +10,8 @@ public class Items {
     String title;
     double totalPricePerItem;
     double totalPrice;
+    int key;
+    String type;
 
 
     public Items() {
@@ -53,5 +55,21 @@ public class Items {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

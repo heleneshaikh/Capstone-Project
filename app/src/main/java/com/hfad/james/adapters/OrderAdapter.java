@@ -45,22 +45,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     ArrayList<Double> priceList = new ArrayList<>();
 
 
-
     public OrderAdapter(Firebase ref) {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 itemList.clear();
-                keys.add("Food");
+                int i = 0;
+                int j = 0;
                 for (DataSnapshot datasnapshot : snapshot.child("Food").getChildren()) {
                     Items items = datasnapshot.getValue(Items.class);
+                    items.setKey(i);
+                    items.setType("Food");
+                    i++;
                     if (items.getAmount() != 0) {
                         itemList.add(items);
                     }
                 }
-                keys.add("Drinks");
                 for (DataSnapshot datasnapshot : snapshot.child("Drinks").getChildren()) {
                     Items items = datasnapshot.getValue(Items.class);
+                    items.setKey(j);
+                    items.setType("Drinks");
+                    j++;
                     if (items.getAmount() != 0) {
                         itemList.add(items);
                     }
@@ -142,8 +147,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         double newPrice = basePrice * item.getAmount();
         item.setTotalPricePerItem(newPrice);
         total.setText("" + item.getTotalPricePerItem() + "€");
-
-
     }
 
     @NonNull
@@ -152,8 +155,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("https")
                 .authority("james-5d3ae.firebaseio.com")
-                .appendPath("Food")
-                .appendPath(String.valueOf(position))
+                .appendPath(itemList.get(position).getType())
+                .appendPath(String.valueOf(itemList.get(position).getKey()))
                 .appendPath("amount")
                 .build();
 
