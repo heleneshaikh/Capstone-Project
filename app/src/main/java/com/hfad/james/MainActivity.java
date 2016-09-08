@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 boolean isTablet = getResources().getBoolean(R.bool.isTablet);
                 if (!isTablet) {
-                    Intent intent = new Intent(this, MenuActivity.class);
+                    Intent intent = new Intent(this, DrawerActivity.class);
                     startActivity(intent);
-                } else {
-                    Intent intent = new Intent(this, TabletMenuActivity.class);
-                    startActivity(intent);
+                } else { //TODO: add layout for tablet
+//                    Intent intent = new Intent(this, TabletMenuActivity.class);
+//                    startActivity(intent);
                 }
 //                Toast toast = Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_LONG);
 //                toast.show();

@@ -30,6 +30,7 @@ public class DrawerActivity extends AppCompatActivity {
     @BindView(R.id.include)
     Toolbar toolbar;
     ActionBarDrawerToggle drawerToggle;
+    String[] drawerItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class DrawerActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        String[] drawerItems = getResources().getStringArray(R.array.drawer_items);
+        drawerItems = getResources().getStringArray(R.array.drawer_items);
         drawerListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerItems));
         drawerListView.setOnItemClickListener(new DrawerClickListener());
         if (savedInstanceState == null) {
@@ -110,7 +111,21 @@ public class DrawerActivity extends AppCompatActivity {
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
 
+        setActionBarTitle(position);
+
         drawerLayout.closeDrawer(drawerListView);
+    }
+
+    private void setActionBarTitle(int position) {
+        String title;
+        if (position == 0) {
+            title = getResources().getString(R.string.app_name);
+        } else {
+            title = drawerItems[position];
+        }
+        if (toolbar != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     @Override
