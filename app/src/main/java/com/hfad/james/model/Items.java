@@ -1,6 +1,8 @@
 package com.hfad.james.model;
 
 
+import java.util.ArrayList;
+
 /**
  * Created by heleneshaikh on 01/09/16.
  */
@@ -9,9 +11,9 @@ public class Items {
     double price;
     String title;
     double totalPricePerItem;
-    double totalPrice;
     int key;
     String type;
+    double totalSum;
 
 
     public Items() {
@@ -49,14 +51,6 @@ public class Items {
         this.totalPricePerItem = totalPricePerItem;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public int getKey() {
         return key;
     }
@@ -71,5 +65,13 @@ public class Items {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public double getTotalSum() {
+        return totalSum;
+    }
+
+    public void setTotalSum(double totalSum) {
+        this.totalSum = totalSum;
     }
 }

@@ -87,15 +87,17 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
         calculatePricePerItem(item);
 
-
-
         minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Uri.Builder builder = getBuilder(holder);
                 Firebase rootRef = new Firebase(builder.toString());
                 double amount = item.getAmount() - 1;
-                rootRef.setValue(amount);
+                if (amount >= 0) {
+                    rootRef.setValue(amount);
+                } else {
+                    rootRef.setValue(0);
+                }
             }
         });
 

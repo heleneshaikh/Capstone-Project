@@ -17,4 +17,6 @@
     <string name="order_toolbar">ORDER</string>
     <string name="order_btn">ORDER</string>
     <string name="total">TOTAL</string>
+    <string name="mark_as_paid_btn">MARK AS PAID</string>
+    <string name="pay_with_app_btn">PAY WITH APP</string>
 </resources>
