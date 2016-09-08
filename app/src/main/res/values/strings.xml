@@ -19,4 +19,13 @@
     <string name="total">TOTAL</string>
     <string name="mark_as_paid_btn">MARK AS PAID</string>
     <string name="pay_with_app_btn">PAY WITH APP</string>
+    <string-array name="drawer_items">
+        <item>Home</item>
+        <item>Drinks</item>
+        <item>Food</item>
+        <item>Shopping cart</item>
+        <item>Payment</item>
+    </string-array>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
 </resources>

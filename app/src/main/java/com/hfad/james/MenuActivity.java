@@ -1,5 +1,7 @@
 package com.hfad.james;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +25,12 @@ public class MenuActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             toolbar.setTitle(R.string.app_name);
         }
+        Fragment menuFragment = new MenuFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.menu_container, menuFragment);
+        transaction.commit();
     }
 
     public void onClickOpenDrinks(View view) {
