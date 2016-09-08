@@ -10,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.OrderAdapter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,13 +20,12 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class PaymentFragment extends Fragment {
-    @BindView(R.id.order_recycler)
+    @BindView(R.id.payment_recycler)
     RecyclerView recyclerView;
     @BindView(R.id.total_amount_tv)
     TextView totalPrice;
 
     public PaymentFragment() {
-        // Required empty public constructor
     }
 
 

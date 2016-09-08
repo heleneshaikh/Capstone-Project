@@ -1,6 +1,7 @@
 package com.hfad.james;
 
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.OrderAdapter;
+import com.hfad.james.model.Items;
 
 import java.util.ArrayList;
 
@@ -44,6 +46,9 @@ public class ShoppingCartFragment extends Fragment {
 
         OrderAdapter adapter = new OrderAdapter(ref);
         recyclerView.setAdapter(adapter);
+
+        Items item = new Items();
+        totalPrice.setText("" + item.getTotalSum());
 
         return view;
     }

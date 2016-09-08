@@ -25,7 +25,6 @@
         style="@style/buttons"
         android:maxLines="1"
         android:layout_marginTop="30dp"
-        android:onClick="onClickOpenDrinks"
         android:layout_below="@+id/welcome"
         android:layout_alignLeft="@+id/food_button"
         android:layout_alignStart="@+id/food_button" />
@@ -37,7 +36,6 @@
         android:text="@string/food_btn"
         style="@style/buttons"
         android:layout_marginTop="50dp"
-        android:onClick="onClickOpenFood"
         android:layout_below="@+id/drinks_btn"
         android:layout_centerHorizontal="true" />
 
