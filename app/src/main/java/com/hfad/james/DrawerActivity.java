@@ -1,6 +1,7 @@
 package com.hfad.james;
 
-import android.app.ActionBar;
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
@@ -31,6 +32,14 @@ public class DrawerActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBarDrawerToggle drawerToggle;
     String[] drawerItems;
+
+    private class DrawerClickListener implements ListView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +73,7 @@ public class DrawerActivity extends AppCompatActivity {
         };
         drawerLayout.addDrawerListener(drawerToggle);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
@@ -72,20 +81,31 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        boolean drawerOpen = drawerLayout.isDrawerOpen(drawerListView);
+        menu.findItem(R.id.shopping_cart).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.shopping_cart:
+                Intent intent = new Intent(this, ShoppingCartActivity.class);
+                startActivity(intent);
+        }
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private class DrawerClickListener implements ListView.OnItemClickListener {
-
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
 
     private void selectItem(int position) {
         Fragment fragment;

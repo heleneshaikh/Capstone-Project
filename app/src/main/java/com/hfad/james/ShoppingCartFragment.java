@@ -15,6 +15,10 @@ import android.widget.TextView;
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.OrderAdapter;
 import com.hfad.james.model.Items;
+import com.hfad.james.model.TotalPriceEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -30,6 +34,7 @@ public class ShoppingCartFragment extends Fragment {
     RecyclerView recyclerView;
     @BindView(R.id.total_amount_tv)
     TextView totalPrice;
+    double price;
 
     public ShoppingCartFragment() {
     }
@@ -53,4 +58,21 @@ public class ShoppingCartFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onPriceEvent(TotalPriceEvent event) {
+        price = event.sum;
+        totalPrice.setText("" + price);
+    }
 }

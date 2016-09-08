@@ -17,6 +17,9 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.hfad.james.R;
 import com.hfad.james.model.Items;
+import com.hfad.james.model.TotalPriceEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -133,6 +136,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         });
         sum += item.getTotalPricePerItem();
         item.setTotalSum(sum);
+        EventBus.getDefault().post(new TotalPriceEvent(sum));
     }
 
     private void calculatePricePerItem(Items item) {
