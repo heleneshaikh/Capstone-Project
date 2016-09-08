@@ -1,6 +1,7 @@
 package com.hfad.james;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
