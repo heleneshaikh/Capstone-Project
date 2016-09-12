@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class ShoppingCartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.fragment_shopping_cart, container, false);
+        LinearLayout view = (LinearLayout) inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         ButterKnife.bind(this, view);
         Firebase ref = new Firebase("https://james-5d3ae.firebaseio.com/");
 

@@ -63,14 +63,12 @@ public class DrawerActivity extends AppCompatActivity {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                setActionBarTitle(currentPosition);
                 invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                setActionBarTitle(currentPosition);
                 invalidateOptionsMenu();
             }
         };
@@ -139,13 +137,14 @@ public class DrawerActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         outState.putInt("position", currentPosition);
     }
 
     public void setActionBarTitle(int position) {
         String title;
+        drawerItems = getResources().getStringArray(R.array.drawer_items);
         if (position == 0) {
             title = getResources().getString(R.string.app_name);
         } else {

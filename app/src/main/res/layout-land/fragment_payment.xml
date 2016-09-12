@@ -10,13 +10,13 @@
         android:id="@+id/payment_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.5"
+        android:layout_weight="6.5"
         tools:context=".PaymentActivity" />
 
     <RelativeLayout
         android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_weight="2.5"
+        android:layout_weight="3.5"
         android:layout_height="0dp">
 
         <TextView
@@ -48,10 +48,12 @@
             android:padding="@dimen/shopping_btn_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/total_tv"
             android:text="@string/mark_as_paid_btn"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginLeft="44dp"
+            android:layout_marginStart="44dp"
+            android:layout_alignTop="@+id/button"
+            android:layout_toRightOf="@+id/total_tv"
+            android:layout_toEndOf="@+id/total_tv" />
 
         <Button
             android:id="@+id/button"
@@ -59,10 +61,14 @@
             android:padding="@dimen/shopping_btn_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mark_paid_btn"
             android:onClick="onClickPay"
             android:text="@string/pay_with_app_btn"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/total_amount_tv"
+            android:layout_toStartOf="@+id/total_amount_tv"
+            android:layout_marginRight="54dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginBottom="10dp"/>
 
     </RelativeLayout>
 

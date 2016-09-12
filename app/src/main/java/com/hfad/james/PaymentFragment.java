@@ -8,8 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.OrderAdapter;
 import butterknife.BindView;
@@ -24,6 +28,8 @@ public class PaymentFragment extends Fragment {
     RecyclerView recyclerView;
     @BindView(R.id.total_amount_tv)
     TextView totalPrice;
+    @BindView(R.id.mark_paid_btn)
+    Button paidButton;
 
     public PaymentFragment() {
     }
@@ -31,7 +37,7 @@ public class PaymentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RelativeLayout relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_payment, container, false);
+        LinearLayout relativeLayout = (LinearLayout) inflater.inflate(R.layout.fragment_payment, container, false);
 
         ButterKnife.bind(this, relativeLayout);
         Firebase ref = new Firebase("https://james-5d3ae.firebaseio.com/");
@@ -41,6 +47,16 @@ public class PaymentFragment extends Fragment {
 
         OrderAdapter adapter = new OrderAdapter(ref);
         recyclerView.setAdapter(adapter);
+
+        paidButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getActivity(), "See you soon!", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+
         return relativeLayout;
     }
 

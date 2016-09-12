@@ -7,4 +7,12 @@
     <dimen name="land_btn_padding">20dp</dimen>
     <dimen name="cv_tv_marginleft">12dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="tv_margintop">15dp</dimen>
+    <dimen name="tv_marginleft">5dp</dimen>
+    <dimen name="shopping_tv_marginLeft">14dp</dimen>
+    <dimen name="button_marginTop">15dp</dimen>
+    <dimen name="shopping_btn_padding">5dp</dimen>
+    <dimen name="shopping_tv_marginRight">24dp</dimen>
+    <item name="shopping_rv_weight" type="dimen" format="float">8.0</item>
+    <item name="shopping_rl_weight" type="dimen" format="float">2.0</item>
 </resources>

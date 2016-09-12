@@ -22,11 +22,6 @@ public class PaymentActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void onClickPaid(View view) {
-        Toast toast = Toast.makeText(this, "See you soon!", Toast.LENGTH_LONG);
-        toast.show();
-    }
-
     public void onClickPay(View view) {
     }
 }
