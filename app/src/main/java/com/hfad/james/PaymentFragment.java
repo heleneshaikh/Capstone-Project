@@ -28,7 +28,6 @@ public class PaymentFragment extends Fragment {
     public PaymentFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

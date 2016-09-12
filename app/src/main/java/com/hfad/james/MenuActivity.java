@@ -2,12 +2,9 @@ package com.hfad.james;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,13 +30,4 @@ public class MenuActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-//    public void onClickOpenDrinks(View view) {
-//        Intent intent = new Intent(this, DrinkActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void onClickOpenFood(View view) {
-//        Intent intent = new Intent(this, FoodActivity.class);
-//        startActivity(intent);
-//    }
 }

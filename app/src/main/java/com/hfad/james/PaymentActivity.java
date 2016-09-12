@@ -1,6 +1,7 @@
 package com.hfad.james;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,5 +25,8 @@ public class PaymentActivity extends AppCompatActivity {
     public void onClickPaid(View view) {
         Toast toast = Toast.makeText(this, "See you soon!", Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public void onClickPay(View view) {
     }
 }

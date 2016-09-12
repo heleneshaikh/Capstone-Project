@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hfad.james.MenuActivity">
 
-    <include layout="@layout/toolbar_main"
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/include" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/welcome"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/welcome_to"
-        android:textSize="25sp"
-        android:minLines="2"
         android:layout_below="@+id/include"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:minLines="2"
+        android:text="@string/welcome_to"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/drinks_btn"
+        style="@style/buttons"
         android:layout_width="@dimen/menu_btn_size"
         android:layout_height="@dimen/menu_btn_size"
-        android:text="@string/drinks_btn"
-        style="@style/buttons"
-        android:maxLines="1"
-        android:onClick="onClickOpenDrinks"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/welcome"
         android:layout_marginLeft="116dp"
         android:layout_marginStart="116dp"
-        android:layout_below="@+id/welcome"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:maxLines="1"
+        android:onClick="onClickOpenDrinks"
+        android:text="@string/drinks_btn" />
 
     <Button
         android:id="@+id/food_button"
+        style="@style/buttons"
         android:layout_width="@dimen/menu_btn_size"
         android:layout_height="@dimen/menu_btn_size"
-        android:text="@string/food_btn"
-        style="@style/buttons"
-        android:onClick="onClickOpenFood"
         android:layout_alignTop="@+id/drinks_btn"
+        android:layout_toEndOf="@+id/welcome"
         android:layout_toRightOf="@+id/welcome"
-        android:layout_toEndOf="@+id/welcome" />
+        android:onClick="onClickOpenFood"
+        android:text="@string/food_btn" />
 
 </RelativeLayout>
+
