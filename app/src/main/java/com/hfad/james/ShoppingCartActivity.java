@@ -22,7 +22,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle(R.string.order_toolbar);
+            getSupportActionBar().setTitle(R.string.shopping_cart);
         }
         createFragment();
     }

@@ -1,6 +1,7 @@
 package com.hfad.james;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v7.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -32,6 +33,7 @@ public class DrawerActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBarDrawerToggle drawerToggle;
     String[] drawerItems;
+    int currentPosition;
 
     private class DrawerClickListener implements ListView.OnItemClickListener {
 
@@ -46,28 +48,29 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
-
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
+        if (savedInstanceState != null) {
+            currentPosition = savedInstanceState.getInt("position");
+            setActionBarTitle(currentPosition);
+        } else {
+            selectItem(0);
         }
 
         drawerItems = getResources().getStringArray(R.array.drawer_items);
         drawerListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerItems));
         drawerListView.setOnItemClickListener(new DrawerClickListener());
-        if (savedInstanceState == null) {
-            selectItem(0);
-        }
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+                setActionBarTitle(currentPosition);
                 invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                setActionBarTitle(currentPosition);
                 invalidateOptionsMenu();
             }
         };
@@ -106,9 +109,9 @@ public class DrawerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private void selectItem(int position) {
         Fragment fragment;
+        currentPosition = position;
         switch (position) {
             case 1:
                 fragment = new DrinkFragment();
@@ -128,15 +131,20 @@ public class DrawerActivity extends AppCompatActivity {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        setActionBarTitle(position);
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
-
-        setActionBarTitle(position);
 
         drawerLayout.closeDrawer(drawerListView);
     }
 
-    private void setActionBarTitle(int position) {
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putInt("position", currentPosition);
+    }
+
+    public void setActionBarTitle(int position) {
         String title;
         if (position == 0) {
             title = getResources().getString(R.string.app_name);
@@ -144,6 +152,7 @@ public class DrawerActivity extends AppCompatActivity {
             title = drawerItems[position];
         }
         if (toolbar != null) {
+            setSupportActionBar(toolbar);
             getSupportActionBar().setTitle(title);
         }
     }

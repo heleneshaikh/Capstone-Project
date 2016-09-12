@@ -57,5 +57,4 @@ public class DrinkActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-
 }

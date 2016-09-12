@@ -12,7 +12,7 @@
     <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">?attr/colorPrimary</item>
     </style>
-    
+
     <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>
     </style>
@@ -35,5 +35,8 @@
         <item name="color">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

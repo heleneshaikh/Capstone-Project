@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hfad.james">
+
     <supports-screens
-        android:resizeable="true"
+        android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
-        android:anyDensity="true" />
+        android:resizeable="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -31,7 +32,7 @@
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".TabletMenuActivity" />
         <activity android:name=".PaymentActivity" />
-        <!--<activity android:name=".DrawerActivity"/>-->
+        <!-- <activity android:name=".DrawerActivity"/> -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />

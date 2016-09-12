@@ -6,49 +6,44 @@
     android:layout_height="match_parent"
     tools:context="com.hfad.james.MenuActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar_main"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
-
     <TextView
         android:id="@+id/welcome"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/include"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
+        android:paddingTop="@dimen/land_btn_padding"
+        android:paddingBottom="@dimen/land_btn_padding"
         android:gravity="center"
         android:minLines="2"
         android:text="@string/welcome_to"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/drinks_btn"
         style="@style/buttons"
         android:layout_width="@dimen/menu_btn_size"
         android:layout_height="@dimen/menu_btn_size"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/welcome"
-        android:layout_marginLeft="116dp"
-        android:layout_marginStart="116dp"
         android:maxLines="1"
-        android:onClick="onClickOpenDrinks"
-        android:text="@string/drinks_btn" />
+        android:text="@string/drinks_btn"
+        android:layout_marginRight="131dp"
+        android:layout_marginEnd="131dp"
+        android:layout_below="@+id/welcome"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/food_button"
         style="@style/buttons"
         android:layout_width="@dimen/menu_btn_size"
         android:layout_height="@dimen/menu_btn_size"
-        android:layout_alignTop="@+id/drinks_btn"
-        android:layout_toEndOf="@+id/welcome"
-        android:layout_toRightOf="@+id/welcome"
-        android:onClick="onClickOpenFood"
-        android:text="@string/food_btn" />
+        android:text="@string/food_btn"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/welcome"
+        android:layout_toLeftOf="@+id/drinks_btn"
+        android:layout_toStartOf="@+id/drinks_btn"
+        android:layout_marginRight="95dp"
+        android:layout_marginEnd="95dp" />
 
 </RelativeLayout>
 

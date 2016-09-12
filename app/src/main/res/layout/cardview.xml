@@ -46,8 +46,8 @@
             android:id="@+id/amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginLeft="@dimen/cv_tv_marginleft"
+            android:layout_marginStart="@dimen/cv_tv_marginleft"
             android:layout_marginTop="15dp"
             android:layout_weight="0.5"
             android:textSize="15sp" />

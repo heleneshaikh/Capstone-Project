@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:weightSum="1">
 
     <android.support.v7.widget.RecyclerView
@@ -14,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/total_tv"
@@ -23,10 +25,9 @@
             android:text="@string/total"
             android:textStyle="bold|italic"
             android:textSize="20sp"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/mark_paid_btn"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="177dp" />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/total_amount_tv"
@@ -46,9 +47,9 @@
             android:text="@string/mark_as_paid_btn"
             style="@style/buttons"
             android:onClick="onClickPaid"
-            android:layout_below="@+id/total_amount_tv"
-            android:layout_centerHorizontal="true"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:layout_above="@+id/pay_app_btn"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/pay_app_btn"
@@ -56,11 +57,11 @@
             android:layout_height="wrap_content"
             android:text="@string/pay_with_app_btn"
             style="@style/buttons"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="39dp"
             android:padding="5dp"
-            android:onClick="onClickPay"/>
+            android:onClick="onClickPay"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/mark_paid_btn"
+            android:layout_alignStart="@+id/mark_paid_btn" />
     </RelativeLayout>
 
 
