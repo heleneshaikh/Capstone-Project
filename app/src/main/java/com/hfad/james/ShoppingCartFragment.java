@@ -73,7 +73,7 @@ public class ShoppingCartFragment extends Fragment {
 
     @Subscribe
     public void onPriceEvent(TotalPriceEvent event) {
-        price = event.sum;
+        price = event.totalPrice;
         totalPrice.setText("" + price);
     }
 }

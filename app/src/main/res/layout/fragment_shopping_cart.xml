@@ -27,6 +27,7 @@
             android:text="@string/total"
             android:textSize="20sp"
             android:textStyle="bold|italic"
+            android:layout_marginStart="@dimen/shopping_tv_marginLeft"
             android:layout_marginLeft="@dimen/shopping_tv_marginLeft"/>
 
         <TextView
@@ -38,7 +39,8 @@
             android:layout_alignTop="@+id/total_tv"
             android:textSize="20sp"
             android:textStyle="bold|italic"
-            android:layout_marginRight="@dimen/shopping_tv_marginRight"/>
+            android:layout_marginRight="@dimen/shopping_tv_marginRight"
+            android:layout_marginEnd="@dimen/shopping_tv_marginRight"/>
 
         <Button
             style="@style/buttons"
@@ -49,6 +51,5 @@
             android:text="@string/order_btn"
             android:layout_marginTop="@dimen/button_marginTop"/>
     </RelativeLayout>
-
 
 </LinearLayout>

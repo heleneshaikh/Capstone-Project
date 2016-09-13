@@ -5,9 +5,9 @@ package com.hfad.james.model;
  */
 public class TotalPriceEvent {
 
-    public final double sum;
+    public final double totalPrice;
 
-    public TotalPriceEvent(double sum) {
-        this.sum = sum;
+    public TotalPriceEvent(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
