@@ -56,7 +56,7 @@
             android:layout_marginBottom="10dp"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/app_payment_btn"
             style="@style/buttons"
             android:padding="@dimen/shopping_btn_padding"
             android:layout_width="wrap_content"
