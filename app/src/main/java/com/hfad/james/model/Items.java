@@ -14,8 +14,6 @@ public class Items {
     int key;
     String type;
     double totalSum;
-    double totalSubstract;
-
 
     public Items() {
     }
@@ -76,11 +74,4 @@ public class Items {
         this.totalSum = totalSum;
     }
 
-    public double getTotalSubstract() {
-        return totalSubstract;
-    }
-
-    public void setTotalSubstract(double totalSubstract) {
-        this.totalSubstract = totalSubstract;
-    }
 }

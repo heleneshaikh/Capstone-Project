@@ -43,9 +43,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     Button minusButton;
     @BindView(R.id.total)
     TextView total;
-    public static double sum = 0.0;
-    public static double substract = 0.0;
-    public static double totalPrice = 0.0;
 
 
     public OrderAdapter(Firebase ref) {
@@ -120,7 +117,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 double amount = item.getAmount() - 1;
                 rootRef.setValue(amount);
                 double basePrice = item.getPrice();
-                double newPrice = basePrice * (amount - 1);
+                double newPrice = basePrice * (item.getAmount() - 1);
                 item.setTotalPricePerItem(newPrice);
             }
         });
@@ -133,14 +130,20 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 double amount = item.getAmount() + 1;
                 rootRef.setValue(amount);
                 double basePrice = item.getPrice();
-                double newPrice = basePrice * (amount - 1);
-                item.setTotalSubstract(newPrice);
+                double newPrice = basePrice * (item.getAmount());
+                item.setTotalPricePerItem(newPrice);
             }
         });
-        sum += item.getTotalPricePerItem();
-        substract += item.getTotalSubstract();
-        totalPrice = sum - substract;
-        EventBus.getDefault().post(new TotalPriceEvent(totalPrice));
+
+        EventBus.getDefault().post(new TotalPriceEvent(calculateTotal()));
+    }
+
+    public double calculateTotal() {
+        double total = 0.0;
+        for (Items item: itemList) {
+            total += item.getTotalPricePerItem();
+        }
+        return total;
     }
 
     private void calculatePricePerItem(Items item) {
