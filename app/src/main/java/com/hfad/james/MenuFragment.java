@@ -36,7 +36,7 @@ public class MenuFragment extends Fragment {
     @BindView(R.id.remove_ad_btn)
     Button removeAdButton;
     //    static final String ITEM_SKU = "android.test.purchased";
-    static final String ITEM_SKU = "com.hfad.pay";
+    static final String ITEM_SKU = "com.hfad.ads";
     private static final String KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtkOB4riYLOEka1C2sJ4fYs2Wd64UF4RS12yBOgszG47iJwBCRmXQ2vpHTvdm5iIP5ZibcTcGWxQG+QLqLQi3/D1FMvbLH/X5PAwsVlcy1p5vMvkTfwwiEBMcWghD+stxCdEUcf/NE6gpsi8xGFy4I/fyKqOKNrZm3Rimk053MqlMzZqaVjPBYEs6Wd52eUyTXsP7MamElxWnRXD1dT8iuNXEaGksO2NLJyasjGBWmDW+zypZerWEGpejNnBLiEHdE5PtoAtlWmAahu6JeCylUwazdO1Pa/tErxfz2GDsqyzi1sgVY1KpAfODdv7Vbw2GJ+XaZQh8Y5kYnUEg1GYJ5wIDAQAB";
     IabHelper helper;
     private static final String TAG = "Billing ";

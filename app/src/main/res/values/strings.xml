@@ -8,8 +8,8 @@
     <string name="welcome_to">Welcome to Snizzles! Please make your order.</string>
     <string name="toolbar_drinks">DRINKS</string>
     <string name="toolbar_food">FOOD</string>
-    <string name="add_item_description">add item</string>
-    <string name="remove_item_description">remove item</string>
+    <string name="add_item_description">add item from cart</string>
+    <string name="remove_item_description">remove item from cart</string>
     <string name="btn_minus" translatable="false">-</string>
     <string name="btn_plus" translatable="false">+</string>
     <string name="shopping_cart">Shopping Cart</string>
@@ -38,6 +38,7 @@
     <string name="order_sent_toast">Your order has been sent to James!</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="error_toast">Uh-oh, an error occurred!</string>
+    <string name="scan_content_description">click to scan the restaurant\'s menu</string>
 </resources>
 <!--    <string name="banner_ad_unit_id">ca-app-pub-4834738949519874/6453478946</string>
 -->

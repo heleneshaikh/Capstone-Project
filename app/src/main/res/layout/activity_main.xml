@@ -24,7 +24,8 @@
         android:lines="2"
         android:minLines="2"
         android:layout_below="@+id/include"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/scan_content_description"/>
 
     <ImageView
         android:id="@+id/imageView"
