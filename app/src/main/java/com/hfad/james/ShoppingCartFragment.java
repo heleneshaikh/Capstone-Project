@@ -1,7 +1,6 @@
 package com.hfad.james;
 
 
-import android.content.ClipData;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
@@ -21,7 +19,6 @@ import com.hfad.james.model.TotalPriceEvent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +32,6 @@ public class ShoppingCartFragment extends Fragment {
     RecyclerView recyclerView;
     @BindView(R.id.total_amount_tv)
     TextView totalPrice;
-    double price;
 
     public ShoppingCartFragment() {
     }
@@ -50,11 +46,11 @@ public class ShoppingCartFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        OrderAdapter adapter = new OrderAdapter(ref);
+        OrderAdapter adapter = new OrderAdapter(ref, getActivity());
         recyclerView.setAdapter(adapter);
 
         Items item = new Items();
-        totalPrice.setText("" + item.getTotalSum());
+        totalPrice.setText(getString(R.string.set_price, (double)item.getTotalSum()));
 
         return view;
     }
@@ -73,7 +69,7 @@ public class ShoppingCartFragment extends Fragment {
 
     @Subscribe
     public void onPriceEvent(TotalPriceEvent event) {
-        price = event.totalPrice;
-        totalPrice.setText("" + price + "€");
+        double price = event.totalPrice;
+        totalPrice.setText(getString(R.string.set_price,price));
     }
 }

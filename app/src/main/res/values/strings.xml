@@ -6,7 +6,6 @@
     <string name="food_btn">FOOD</string>
     <string name="icon_reading_description">icon displaying a phone reading a QR code</string>
     <string name="welcome_to">Welcome to Snizzles! Please make your order.</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="toolbar_drinks">DRINKS</string>
     <string name="toolbar_food">FOOD</string>
     <string name="add_item_description">add item</string>
@@ -27,10 +26,18 @@
     </string-array>
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
-    <string name="title_activity_main2">Main2Activity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+    <string name="set_amount">%d</string>
+    <string name="set_price">€%.1f</string>
+    <string name="set_total_price_item">€%.1f</string>
+    <string name="cancel_scan_toast">you cancelled the scan</string>
+    <string name="see_you_toast">See you soon!</string>
+    <string name="thanks_toast">Thanks for coming!</string>
+    <string name="order_sent_toast">Your order has been sent to James!</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="error_toast">Uh-oh, an error occurred!</string>
 </resources>
+<!--    <string name="banner_ad_unit_id">ca-app-pub-4834738949519874/6453478946</string>
+-->

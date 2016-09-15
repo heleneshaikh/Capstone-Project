@@ -2,9 +2,12 @@ package com.hfad.james;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +31,8 @@ public class MenuActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.replace(R.id.menu_container, menuFragment);
         transaction.commit();
+
+
     }
 
 }

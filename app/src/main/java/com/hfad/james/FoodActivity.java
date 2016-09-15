@@ -2,13 +2,11 @@ package com.hfad.james;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -52,7 +50,6 @@ public class FoodActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {

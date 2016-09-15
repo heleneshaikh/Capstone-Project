@@ -43,7 +43,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     }
 
     public void onClickSendOrder(View view) {
-        Toast toast = Toast.makeText(this, "Your order has been sent to James!", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, R.string.order_sent_toast, Toast.LENGTH_LONG);
         toast.show();
     }
 }

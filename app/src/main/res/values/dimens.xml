@@ -2,7 +2,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="btn_padding">50dp</dimen>
-    <dimen name="menu_btn_size">150dp</dimen>
+    <dimen name="menu_btn_size">120dp</dimen>
     <dimen name="font_size_cv">18sp</dimen>
     <dimen name="land_btn_padding">20dp</dimen>
     <dimen name="cv_tv_marginleft">12dp</dimen>

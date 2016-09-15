@@ -1,5 +1,6 @@
 package com.hfad.james.adapters;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -38,8 +39,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     public String key;
     @BindView(R.id.total)
     TextView total;
+    Context context;
 
-    public MenuAdapter(Firebase ref) {
+    public MenuAdapter(Firebase ref, Context mContext) {
+        context = mContext;
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -82,8 +85,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         ButterKnife.bind(this, cardView);
 
         item_title.setText(item.getTitle());
-        amount.setText("" + (int) item.getAmount());
-        price.setText(String.valueOf(item.getPrice()) + "€");
+        amount.setText(context.getString(R.string.set_amount, (int) item.getAmount()));
+        price.setText(context.getString(R.string.set_price, (double) item.getPrice()));
 
         calculatePricePerItem(item);
 
@@ -116,7 +119,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         double basePrice = item.getPrice();
         double newPrice = basePrice * item.getAmount();
         item.setTotalPricePerItem(newPrice);
-        total.setText(""+item.getTotalPricePerItem() + "€");
+        total.setText(context.getString(R.string.set_total_price_item, item.getTotalPricePerItem()));
     }
 
     @NonNull

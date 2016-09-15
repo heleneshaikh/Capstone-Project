@@ -8,10 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (intentResult != null) {
             if (intentResult.getContents() == null) {
-                Toast toast = Toast.makeText(this, "you cancelled the scan", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(this, R.string.cancel_scan_toast, Toast.LENGTH_LONG);
                 toast.show();
             } else {
                 boolean isTablet = getResources().getBoolean(R.bool.isTablet);

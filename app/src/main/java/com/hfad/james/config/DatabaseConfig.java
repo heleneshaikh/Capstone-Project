@@ -1,7 +1,6 @@
 package com.hfad.james.config;
 
 import android.app.Application;
-
 import com.firebase.client.Firebase;
 
 /**

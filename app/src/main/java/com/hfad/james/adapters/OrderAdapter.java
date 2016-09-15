@@ -1,5 +1,6 @@
 package com.hfad.james.adapters;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -18,11 +18,8 @@ import com.firebase.client.ValueEventListener;
 import com.hfad.james.R;
 import com.hfad.james.model.Items;
 import com.hfad.james.model.TotalPriceEvent;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,9 +40,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     Button minusButton;
     @BindView(R.id.total)
     TextView total;
+    Context context;
 
 
-    public OrderAdapter(Firebase ref) {
+    public OrderAdapter(Firebase ref, Context mContext) {
+        context = mContext;
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -103,8 +102,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         ButterKnife.bind(this, cardView);
 
         item_title.setText(item.getTitle());
-        amount.setText("" + (int) item.getAmount());
-        price.setText(String.valueOf(item.getPrice()) + "€");
+        amount.setText(context.getString(R.string.set_amount, (int) item.getAmount()));
+        price.setText(context.getString(R.string.set_price, (double) item.getPrice()));
         item.setTotalPricePerItem(item.getPrice());
 
         calculatePricePerItem(item);
@@ -140,17 +139,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     public double calculateTotal() {
         double total = 0.0;
-        for (Items item: itemList) {
+        for (Items item : itemList) {
             total += item.getTotalPricePerItem();
         }
         return total;
     }
 
-    private void calculatePricePerItem(Items item) {
+    void calculatePricePerItem(Items item) {
         double basePrice = item.getPrice();
         double newPrice = basePrice * item.getAmount();
         item.setTotalPricePerItem(newPrice);
-        total.setText("" + item.getTotalPricePerItem() + "€");
+        total.setText(context.getString(R.string.set_total_price_item, (double) item.getTotalPricePerItem()));
     }
 
     @NonNull
@@ -171,5 +170,4 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public int getItemCount() {
         return (itemList.isEmpty() ? 0 : itemList.size());
     }
-
 }

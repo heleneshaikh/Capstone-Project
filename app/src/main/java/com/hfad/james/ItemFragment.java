@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.MenuAdapter;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -34,7 +33,7 @@ public class ItemFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        MenuAdapter adapter = new MenuAdapter(ref);
+        MenuAdapter adapter = new MenuAdapter(ref, getActivity());
         recyclerView.setAdapter(adapter);
 
         return view;

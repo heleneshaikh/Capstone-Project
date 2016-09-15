@@ -1,7 +1,12 @@
 package com.hfad.james;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.PersistableBundle;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -12,19 +17,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import android.Manifest;
 
-public class DrawerActivity extends AppCompatActivity {
+public class DrawerActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback{
+    private static final int REQUEST_READ_PHONE_STATE = 0;
     @BindView(R.id.drawer_listview)
     ListView drawerListView;
     @BindView(R.id.drawerLayout)
@@ -48,6 +54,12 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
+
+        String android_id = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        Log.v("AndroidId","Android ID : "+android_id);
+
+
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt("position");
             setActionBarTitle(currentPosition);
