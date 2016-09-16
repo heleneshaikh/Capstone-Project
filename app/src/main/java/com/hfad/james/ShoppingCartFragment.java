@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.hfad.james.adapters.OrderAdapter;
@@ -32,6 +34,8 @@ public class ShoppingCartFragment extends Fragment {
     RecyclerView recyclerView;
     @BindView(R.id.total_amount_tv)
     TextView totalPrice;
+    @BindView(R.id.order_button)
+    Button orderButton;
 
     public ShoppingCartFragment() {
     }
@@ -51,6 +55,14 @@ public class ShoppingCartFragment extends Fragment {
 
         Items item = new Items();
         totalPrice.setText(getString(R.string.set_price, (double)item.getTotalSum()));
+
+        orderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getActivity(), R.string.order_sent_toast, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
 
         return view;
     }

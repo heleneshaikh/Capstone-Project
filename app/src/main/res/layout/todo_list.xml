@@ -4,10 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <TextView
+        android:id="@+id/press_long"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/press_long"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="@dimen/todo_edit_margin"
+        android:layout_marginStart="@dimen/todo_edit_margin"
+        android:layout_marginRight="@dimen/todo_edit_margin"
+        android:layout_marginEnd="@dimen/todo_edit_margin"/>
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/todo_edit_margin"
+        android:layout_marginStart="@dimen/todo_edit_margin"
+        android:layout_marginRight="@dimen/todo_edit_margin"
+        android:layout_marginEnd="@dimen/todo_edit_margin">
     </ListView>
 
     <TextView
@@ -15,5 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/no_todos" />
+
+
 
 </LinearLayout>

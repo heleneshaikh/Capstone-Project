@@ -5,23 +5,31 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.hfad.james.contentprovider.MyTodoContentProvider;
 import com.hfad.james.database.TodoTable;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by heleneshaikh on 16/09/16.
  */
-public class TodoDetailActivity extends Activity {
-    private Spinner mCategory;
-    private EditText mTitleText;
-    private EditText mBodyText;
+public class TodoDetailActivity extends AppCompatActivity {
+    @BindView(R.id.editText)
+    EditText nameText;
+    @BindView(R.id.submit_btn)
+    Button submitButton;
+    @BindView(R.id.include)
+    Toolbar toolbar;
 
     private Uri todoUri;
 
@@ -30,13 +38,14 @@ public class TodoDetailActivity extends Activity {
         super.onCreate(bundle);
         setContentView(R.layout.todo_edit);
 
-        mCategory = (Spinner) findViewById(R.id.category);
-        mTitleText = (EditText) findViewById(R.id.todo_edit_summary);
-        mBodyText = (EditText) findViewById(R.id.todo_edit_description);
-        Button confirmButton = (Button) findViewById(R.id.todo_edit_button);
+        ButterKnife.bind(this);
 
         Bundle extras = getIntent().getExtras();
 
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(R.string.resto_to_do);
+        }
         // check from the saved Instance
         todoUri = (bundle == null) ? null : (Uri) bundle
                 .getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
@@ -49,41 +58,27 @@ public class TodoDetailActivity extends Activity {
             fillData(todoUri);
         }
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (TextUtils.isEmpty(mTitleText.getText().toString())) {
+                if (TextUtils.isEmpty(nameText.getText().toString())) {
                     makeToast();
                 } else {
                     setResult(RESULT_OK);
                     finish();
                 }
             }
-
         });
     }
 
     private void fillData(Uri uri) {
-        String[] projection = { TodoTable.COLUMN_SUMMARY,
-                TodoTable.COLUMN_DESCRIPTION, TodoTable.COLUMN_CATEGORY };
+        String[] projection = {TodoTable.COLUMN_NAME};
         Cursor cursor = getContentResolver().query(uri, projection, null, null,
                 null);
         if (cursor != null) {
             cursor.moveToFirst();
-            String category = cursor.getString(cursor
-                    .getColumnIndexOrThrow(TodoTable.COLUMN_CATEGORY));
 
-            for (int i = 0; i < mCategory.getCount(); i++) {
-
-                String s = (String) mCategory.getItemAtPosition(i);
-                if (s.equalsIgnoreCase(category)) {
-                    mCategory.setSelection(i);
-                }
-            }
-
-            mTitleText.setText(cursor.getString(cursor
-                    .getColumnIndexOrThrow(TodoTable.COLUMN_SUMMARY)));
-            mBodyText.setText(cursor.getString(cursor
-                    .getColumnIndexOrThrow(TodoTable.COLUMN_DESCRIPTION)));
+            nameText.setText(cursor.getString(cursor
+                    .getColumnIndexOrThrow(TodoTable.COLUMN_NAME)));
 
             // always close the cursor
             cursor.close();
@@ -102,35 +97,28 @@ public class TodoDetailActivity extends Activity {
         saveState();
     }
 
+
     private void saveState() {
-        String category = (String) mCategory.getSelectedItem();
-        String summary = mTitleText.getText().toString();
-        String description = mBodyText.getText().toString();
+        String description = nameText.getText().toString();
 
-        // only save if either summary or description
-        // is available
-
-        if (description.length() == 0 && summary.length() == 0) {
+        if (nameText.length() == 0) {
+            Log.v("noEntry", "no entry provided");
             return;
         }
 
         ContentValues values = new ContentValues();
-        values.put(TodoTable.COLUMN_CATEGORY, category);
-        values.put(TodoTable.COLUMN_SUMMARY, summary);
-        values.put(TodoTable.COLUMN_DESCRIPTION, description);
+        values.put(TodoTable.COLUMN_NAME, description);
 
         if (todoUri == null) {
-            // New todo
             todoUri = getContentResolver().insert(
                     MyTodoContentProvider.CONTENT_URI, values);
         } else {
-            // Update todo
             getContentResolver().update(todoUri, values, null, null);
         }
     }
 
     private void makeToast() {
-        Toast.makeText(TodoDetailActivity.this, "Please maintain a summary",
+        Toast.makeText(TodoDetailActivity.this, "Please add a name",
                 Toast.LENGTH_LONG).show();
     }
 }

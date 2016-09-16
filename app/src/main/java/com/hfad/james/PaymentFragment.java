@@ -41,7 +41,7 @@ public class PaymentFragment extends Fragment {
     Button paidButton;
     @BindView(R.id.app_payment_btn)
     Button appPayment;
-    @BindView(R.id.goToComments)
+    @BindView(R.id.resto_list_btn)
     Button goToComments;
     private static final String TAG = "Billing setup";
     IabHelper helper;
@@ -65,7 +65,6 @@ public class PaymentFragment extends Fragment {
                 }
             }
         });
-        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -105,7 +104,6 @@ public class PaymentFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
 
         return relativeLayout;
     }

@@ -43,6 +43,7 @@
             android:layout_marginEnd="@dimen/shopping_tv_marginRight"/>
 
         <Button
+            android:id="@+id/order_button"
             style="@style/buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

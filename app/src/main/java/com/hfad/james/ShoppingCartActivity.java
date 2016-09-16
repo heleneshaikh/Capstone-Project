@@ -46,4 +46,8 @@ public class ShoppingCartActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, R.string.order_sent_toast, Toast.LENGTH_LONG);
         toast.show();
     }
+
+    protected void orderSentToast() {
+
+    }
 }

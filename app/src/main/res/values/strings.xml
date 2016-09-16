@@ -40,7 +40,7 @@
     <string name="error_toast">Uh-oh, an error occurred!</string>
     <string name="scan_content_description">click to scan the restaurant\'s menu</string>
     <string name="net_error_toast">network error</string>
-    <string name="add_reviews_btn">Add a review</string>
+    <string name="add_resto_btn">Add a restaurant to your todo list</string>
     <string name="remove_ads">remove ads</string>
     <string name="add_review">ADD REVIEW</string>
     <string name="write_your_review">write your review</string>
@@ -55,5 +55,10 @@
     <string name="todo_edit_summary">Summary</string>
     <string name="todo_edit_description">Description</string>
     <string name="todo_edit_confirm">Confirm</string>
+    <string name="star_icon">star icon</string>
+    <string name="add_to_restaurant_list">ADD TO RESTAURANT LIST</string>
+    <string name="enter_name">enter the name of the restaurant</string>
+    <string name="resto_to_do">Resto to do list</string>
+    <string name="press_long">Press long to delete an item</string>
 </resources><!--    <string name="banner_ad_unit_id">ca-app-pub-4834738949519874/6453478946</string>
 -->

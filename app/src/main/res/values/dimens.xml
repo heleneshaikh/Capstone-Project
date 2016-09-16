@@ -13,6 +13,8 @@
     <dimen name="button_marginTop">15dp</dimen>
     <dimen name="shopping_btn_padding">5dp</dimen>
     <dimen name="shopping_tv_marginRight">24dp</dimen>
+    <dimen name="iv_marginLET">8dp</dimen>
+    <dimen name="todo_edit_margin">20dp</dimen>
     <item name="shopping_rv_weight" format="float" type="dimen">8.0</item>
     <item name="shopping_rl_weight" format="float" type="dimen">2.0</item>
 </resources>
