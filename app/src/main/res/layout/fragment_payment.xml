@@ -10,7 +10,7 @@
         android:id="@+id/payment_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="6.5"
         tools:context=".PaymentActivity"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
@@ -19,7 +19,7 @@
     <RelativeLayout
         android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="3.5"
         android:layout_height="0dp">
 
         <TextView
@@ -32,7 +32,8 @@
             android:textSize="20sp"
             android:textStyle="bold|italic"
             android:layout_marginStart="@dimen/shopping_tv_marginLeft"
-            android:layout_marginLeft="@dimen/shopping_tv_marginLeft"/>
+            android:layout_marginLeft="@dimen/shopping_tv_marginLeft"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/total_amount_tv"
@@ -44,7 +45,8 @@
             android:textSize="20sp"
             android:textStyle="bold|italic"
             android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            />
 
         <Button
             android:id="@+id/mark_paid_btn"
@@ -53,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mark_as_paid_btn"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/total_tv"
             android:layout_alignLeft="@+id/total_tv"
             android:layout_alignStart="@+id/total_tv" />
 
@@ -66,19 +68,20 @@
             android:onClick="onClickPay"
             android:text="@string/pay_with_app_btn"
             android:layout_alignTop="@+id/mark_paid_btn"
-            android:layout_toLeftOf="@+id/total_amount_tv"
-            android:layout_toStartOf="@+id/total_amount_tv" />
+            android:layout_toRightOf="@+id/mark_paid_btn"
+            android:layout_toEndOf="@+id/mark_paid_btn"
+            android:layout_marginLeft="40dp"/>
 
         <Button
             android:id="@+id/goToComments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_reviews_btn"
-            android:layout_below="@+id/app_payment_btn"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

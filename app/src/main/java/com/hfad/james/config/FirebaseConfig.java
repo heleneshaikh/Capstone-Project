@@ -6,7 +6,7 @@ import com.firebase.client.Firebase;
 /**
  * Created by heleneshaikh on 01/09/16.
  */
-public class DatabaseConfig extends Application {
+public class FirebaseConfig extends Application {
 
     @Override
     public void onCreate() {
