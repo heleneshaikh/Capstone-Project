@@ -4,7 +4,7 @@ Project overview
 ==============
 
 
-A restaurant app where users have to scan the restaurant's barcode to receive the menu. They can then order their food and drinks and the order is then sent to the bartender. The user can also choose to pay via the app or cash. The app also provides a functionality to add a a restaurant todo list with the restaurants they would like to visit.
+A restaurant app where users have to scan the restaurant's barcode to receive the menu. They can then order their food and drinks and the order is then sent to the bartender. The user can also choose to pay via the app or cash. The app also provides a functionality to add a a restaurant todo list with the restaurants they would like to visit. **The app cannot run on an emulator, because it uses in-app-billing**
 
 Requirements
 ==============
