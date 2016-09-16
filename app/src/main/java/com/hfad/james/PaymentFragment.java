@@ -29,7 +29,6 @@ import org.greenrobot.eventbus.Subscribe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,8 +41,9 @@ public class PaymentFragment extends Fragment {
     Button paidButton;
     @BindView(R.id.app_payment_btn)
     Button appPayment;
+    @BindView(R.id.goToComments)
+    Button goToComments;
     private static final String TAG = "Billing setup";
-    private static final String KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtkOB4riYLOEka1C2sJ4fYs2Wd64UF4RS12yBOgszG47iJwBCRmXQ2vpHTvdm5iIP5ZibcTcGWxQG+QLqLQi3/D1FMvbLH/X5PAwsVlcy1p5vMvkTfwwiEBMcWghD+stxCdEUcf/NE6gpsi8xGFy4I/fyKqOKNrZm3Rimk053MqlMzZqaVjPBYEs6Wd52eUyTXsP7MamElxWnRXD1dT8iuNXEaGksO2NLJyasjGBWmDW+zypZerWEGpejNnBLiEHdE5PtoAtlWmAahu6JeCylUwazdO1Pa/tErxfz2GDsqyzi1sgVY1KpAfODdv7Vbw2GJ+XaZQh8Y5kYnUEg1GYJ5wIDAQAB";
     IabHelper helper;
     //    static final String ITEM_SKU = "android.test.purchased";
     static final String ITEM_SKU = "com.hfad.payment";
@@ -54,7 +54,7 @@ public class PaymentFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        helper = new IabHelper(getActivity(), KEY);
+        helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
         helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             @Override
             public void onIabSetupFinished(IabResult result) {
@@ -97,6 +97,15 @@ public class PaymentFragment extends Fragment {
                 helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
             }
         });
+
+        goToComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TodosOverviewActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         return relativeLayout;
     }

@@ -37,7 +37,6 @@ public class MenuFragment extends Fragment {
     Button removeAdButton;
     //    static final String ITEM_SKU = "android.test.purchased";
     static final String ITEM_SKU = "com.hfad.ads";
-    private static final String KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtkOB4riYLOEka1C2sJ4fYs2Wd64UF4RS12yBOgszG47iJwBCRmXQ2vpHTvdm5iIP5ZibcTcGWxQG+QLqLQi3/D1FMvbLH/X5PAwsVlcy1p5vMvkTfwwiEBMcWghD+stxCdEUcf/NE6gpsi8xGFy4I/fyKqOKNrZm3Rimk053MqlMzZqaVjPBYEs6Wd52eUyTXsP7MamElxWnRXD1dT8iuNXEaGksO2NLJyasjGBWmDW+zypZerWEGpejNnBLiEHdE5PtoAtlWmAahu6JeCylUwazdO1Pa/tErxfz2GDsqyzi1sgVY1KpAfODdv7Vbw2GJ+XaZQh8Y5kYnUEg1GYJ5wIDAQAB";
     IabHelper helper;
     private static final String TAG = "Billing ";
     AdView adView;
@@ -46,17 +45,34 @@ public class MenuFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
+        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+            @Override
+            public void onIabSetupFinished(IabResult result) {
+                if (result.isSuccess()) {
+                    Log.v(TAG, "setup OK");
+                } else {
+                    Log.v(TAG, "setup NOT OK");
+                }
+            }
+        });
+    }
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
 
-        MobileAds.initialize(getActivity().getApplicationContext(), "ca-app-pub-3940256099942544/63009781111713");
-
+        MobileAds.initialize(getActivity().getApplicationContext(), getString(R.string.my_admob_key));
+//ca-app-pub-4834738949519874/6453478946
         adView = (AdView) view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("b9c49844a26fd47b")
+//                .addTestDevice("b9c49844a26fd47b")
                 .addTestDevice("1fac1e94f67cda06")
                 .build();
 //        AdRequest adRequest = new AdRequest.Builder().build();
@@ -90,23 +106,8 @@ public class MenuFragment extends Fragment {
                 helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
             }
         });
-        return view;
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        helper = new IabHelper(getActivity(), KEY);
-        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            @Override
-            public void onIabSetupFinished(IabResult result) {
-                if (result.isSuccess()) {
-                    Log.v(TAG, "setup OK");
-                } else {
-                    Log.v(TAG, "setup NOT OK");
-                }
-            }
-        });
+        return view;
     }
 
     @Override

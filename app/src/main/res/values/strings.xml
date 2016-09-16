@@ -39,6 +39,21 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="error_toast">Uh-oh, an error occurred!</string>
     <string name="scan_content_description">click to scan the restaurant\'s menu</string>
-</resources>
-<!--    <string name="banner_ad_unit_id">ca-app-pub-4834738949519874/6453478946</string>
+    <string name="net_error_toast">network error</string>
+    <string name="add_reviews_btn">Add a review</string>
+    <string name="remove_ads">remove ads</string>
+    <string name="add_review">ADD REVIEW</string>
+    <string name="write_your_review">write your review</string>
+    <string name="say_what_you_think">Say what you think of us here</string>
+    <string name="insert">Insert</string>
+
+    <string name="no_todos">Currently there are no Todo items maintained</string>
+    <string name="menu_insert">Add Item</string>
+    <string name="menu_delete">Delete Todo</string>
+    <string name="todo_summary">Summary</string>
+    <string name="todo_description">Delete Todo</string>
+    <string name="todo_edit_summary">Summary</string>
+    <string name="todo_edit_description">Description</string>
+    <string name="todo_edit_confirm">Confirm</string>
+</resources><!--    <string name="banner_ad_unit_id">ca-app-pub-4834738949519874/6453478946</string>
 -->

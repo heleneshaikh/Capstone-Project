@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/welcome_to"
-        android:layout_marginTop="52dp"
         android:textSize="25sp"
         android:minLines="2"
         android:layout_alignParentTop="true"
@@ -54,10 +53,11 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="remove ads"
+        android:text="@string/remove_ads"
         android:id="@+id/remove_ad_btn"
         android:layout_above="@+id/adView"
         android:layout_alignLeft="@+id/adView"
         android:layout_alignStart="@+id/adView" />
+
 
 </RelativeLayout>
