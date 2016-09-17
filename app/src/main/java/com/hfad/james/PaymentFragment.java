@@ -47,6 +47,7 @@ public class PaymentFragment extends Fragment {
     IabHelper helper;
     //    static final String ITEM_SKU = "android.test.purchased";
     static final String ITEM_SKU = "com.hfad.payment";
+    double price;
 
     public PaymentFragment() {
     }
@@ -81,8 +82,13 @@ public class PaymentFragment extends Fragment {
         OrderAdapter adapter = new OrderAdapter(ref, getActivity());
         recyclerView.setAdapter(adapter);
 
-        paidButton.setOnClickListener(new View.OnClickListener() {
+        //TOTALPRICE
+        Intent widgetNotify = new Intent(getActivity(), SimpleWidgetProvider.class);
+        widgetNotify.setAction(SimpleWidgetProvider.SET_TOTAL);
+        widgetNotify.putExtra(SimpleWidgetProvider.PRICE, price);
+        getActivity().sendBroadcast(widgetNotify);
 
+        paidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast toast = Toast.makeText(getActivity(), R.string.see_you_toast, Toast.LENGTH_LONG);
@@ -165,7 +171,7 @@ public class PaymentFragment extends Fragment {
 
     @Subscribe
     public void onPriceEvent(TotalPriceEvent event) {
-        double price = event.totalPrice;
+        price = event.totalPrice;
         totalPrice.setText(getString(R.string.set_price, (double) price));
     }
 }

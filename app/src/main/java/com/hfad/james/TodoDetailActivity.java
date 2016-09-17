@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +31,6 @@ public class TodoDetailActivity extends AppCompatActivity {
     Button submitButton;
     @BindView(R.id.include)
     Toolbar toolbar;
-
     private Uri todoUri;
 
     @Override
@@ -71,7 +71,7 @@ public class TodoDetailActivity extends AppCompatActivity {
     }
 
     private void fillData(Uri uri) {
-        String[] projection = {TodoTable.COLUMN_NAME};
+        String[] projection = { TodoTable.COLUMN_NAME };
         Cursor cursor = getContentResolver().query(uri, projection, null, null,
                 null);
         if (cursor != null) {
@@ -103,11 +103,9 @@ public class TodoDetailActivity extends AppCompatActivity {
             Log.v("noEntry", "no entry provided");
             return;
         }
-        //onPreExecute
         ContentValues values = new ContentValues();
         values.put(TodoTable.COLUMN_NAME, description);
 
-        //doInBackground
         if (todoUri == null) {
             todoUri = getContentResolver().insert(
                     MyTodoContentProvider.CONTENT_URI, values);

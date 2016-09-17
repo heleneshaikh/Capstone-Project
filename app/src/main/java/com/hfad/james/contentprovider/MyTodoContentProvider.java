@@ -21,14 +21,12 @@ import com.hfad.james.database.TodoTable;
 
 public class MyTodoContentProvider extends ContentProvider {
 
-    // database
     private TodoDatabaseHelper database;
 
-    // used for the UriMacher
     private static final int TODOS = 10;
     private static final int TODO_ID = 20;
 
-    private static final String AUTHORITY = "de.vogella.android.todos.contentprovider";
+    private static final String AUTHORITY = "com.hfad.james.contentprovider";
 
     private static final String BASE_PATH = "todos";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
@@ -41,6 +39,7 @@ public class MyTodoContentProvider extends ContentProvider {
 
     private static final UriMatcher sURIMatcher = new UriMatcher(
             UriMatcher.NO_MATCH);
+
     static {
         sURIMatcher.addURI(AUTHORITY, BASE_PATH, TODOS);
         sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", TODO_ID);
@@ -56,13 +55,10 @@ public class MyTodoContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
 
-        // Uisng SQLiteQueryBuilder instead of query() method
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
-        // check if the caller has requested a column which does not exists
         checkColumns(projection);
 
-        // Set the table
         queryBuilder.setTables(TodoTable.TABLE_TODO);
 
         int uriType = sURIMatcher.match(uri);
@@ -70,7 +66,6 @@ public class MyTodoContentProvider extends ContentProvider {
             case TODOS:
                 break;
             case TODO_ID:
-                // adding the ID to the original query
                 queryBuilder.appendWhere(TodoTable.COLUMN_ID + "="
                         + uri.getLastPathSegment());
                 break;
@@ -81,7 +76,6 @@ public class MyTodoContentProvider extends ContentProvider {
         SQLiteDatabase db = database.getWritableDatabase();
         Cursor cursor = queryBuilder.query(db, projection, selection,
                 selectionArgs, null, null, sortOrder);
-        // make sure that potential listeners are getting notified
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         return cursor;
@@ -183,9 +177,10 @@ public class MyTodoContentProvider extends ContentProvider {
         if (projection != null) {
             HashSet<String> requestedColumns = new HashSet<>(
                     Arrays.asList(projection));
+
             HashSet<String> availableColumns = new HashSet<>(
                     Arrays.asList(available));
-            // check if all columns which are requested are available
+
             if (!availableColumns.containsAll(requestedColumns)) {
                 throw new IllegalArgumentException(
                         "Unknown columns in projection");

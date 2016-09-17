@@ -6,15 +6,11 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
-import android.widget.TextView;
-
 import com.hfad.james.model.TotalPriceEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by heleneshaikh on 17/09/16.
@@ -22,11 +18,14 @@ import butterknife.ButterKnife;
 public class SimpleWidgetProvider extends AppWidgetProvider {
     RemoteViews remoteViews;
     public static final String SET_TOTAL = "com.hfad.james.SET_TOTAL";
+    double price;
+    public static final String PRICE = "price";
 
+    //TOTAL PRICE
     @Override
     public void onReceive(Context context, Intent intent) {
         if (SET_TOTAL.equals(intent.getAction())) {
-
+            price = intent.getDoubleExtra(PRICE, 0);
         }
     }
 
@@ -39,6 +38,9 @@ public class SimpleWidgetProvider extends AppWidgetProvider {
             remoteViews = new RemoteViews(context.getPackageName(), R.layout.simple_widget);
             //set image
             remoteViews.setImageViewResource(R.id.piggy_bank, R.drawable.piggy_bank);
+
+            //TOTALPRICE
+            remoteViews.setTextViewText(R.id.total_amount, String.valueOf(price));
 
             Intent intent = new Intent(context, SimpleWidgetProvider.class);
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -59,8 +61,8 @@ public class SimpleWidgetProvider extends AppWidgetProvider {
 //    //set total price
 //    @Subscribe
 //    public void onPriceEvent(TotalPriceEvent event) {
-//        double price = event.totalPrice;
-//        remoteViews.setTextViewText(R.id.total_amount, String.valueOf(price));
+//       price = event.totalPrice;
+////        remoteViews.setTextViewText(R.id.total_amount, String.valueOf(price));
 //    }
 //
 //    @Override

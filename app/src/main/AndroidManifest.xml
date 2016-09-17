@@ -44,7 +44,7 @@
         <activity android:name=".TodoDetailActivity"/>
         <provider
             android:name=".contentprovider.MyTodoContentProvider"
-            android:authorities="de.vogella.android.todos.contentprovider" >
+            android:authorities="com.hfad.james.contentprovider" >
         </provider>
 
         <receiver android:name="SimpleWidgetProvider" >
