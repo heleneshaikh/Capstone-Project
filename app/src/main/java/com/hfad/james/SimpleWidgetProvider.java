@@ -21,6 +21,14 @@ import butterknife.ButterKnife;
  */
 public class SimpleWidgetProvider extends AppWidgetProvider {
     RemoteViews remoteViews;
+    public static final String SET_TOTAL = "com.hfad.james.SET_TOTAL";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (SET_TOTAL.equals(intent.getAction())) {
+
+        }
+    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -43,22 +51,20 @@ public class SimpleWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    @Override
-    public void onEnabled(Context context) {
-        super.onEnabled(context);
-        EventBus.getDefault().register(this);
-    }
-
-    //set total price
-    @Subscribe
-    public void onPriceEvent(TotalPriceEvent event) {
-        double price = event.totalPrice;
-        remoteViews.setTextViewText(R.id.total_amount, String.valueOf(price));
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        EventBus.getDefault().unregister(this);
-        super.onDisabled(context);
-    }
+//    @Override
+//    public void onEnabled(Context context) {
+//        EventBus.getDefault().register(this);
+//    }
+//
+//    //set total price
+//    @Subscribe
+//    public void onPriceEvent(TotalPriceEvent event) {
+//        double price = event.totalPrice;
+//        remoteViews.setTextViewText(R.id.total_amount, String.valueOf(price));
+//    }
+//
+//    @Override
+//    public void onDisabled(Context context) {
+//        EventBus.getDefault().unregister(this);
+//    }
 }

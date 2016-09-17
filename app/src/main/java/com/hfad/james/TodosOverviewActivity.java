@@ -34,8 +34,6 @@ public class TodosOverviewActivity extends ListActivity implements
         LoaderManager.LoaderCallbacks<Cursor>, AppCompatCallback {
     @BindView(R.id.include)
     Toolbar toolbar;
-    private static final int ACTIVITY_CREATE = 0;
-    private static final int ACTIVITY_EDIT = 1;
     private static final int DELETE_ID = Menu.FIRST + 1;
     // private Cursor cursor;
     private SimpleCursorAdapter adapter;

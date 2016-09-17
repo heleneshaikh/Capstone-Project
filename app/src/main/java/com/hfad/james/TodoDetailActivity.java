@@ -80,7 +80,6 @@ public class TodoDetailActivity extends AppCompatActivity {
             nameText.setText(cursor.getString(cursor
                     .getColumnIndexOrThrow(TodoTable.COLUMN_NAME)));
 
-            // always close the cursor
             cursor.close();
         }
     }
@@ -97,7 +96,6 @@ public class TodoDetailActivity extends AppCompatActivity {
         saveState();
     }
 
-
     private void saveState() {
         String description = nameText.getText().toString();
 
@@ -105,10 +103,11 @@ public class TodoDetailActivity extends AppCompatActivity {
             Log.v("noEntry", "no entry provided");
             return;
         }
-
+        //onPreExecute
         ContentValues values = new ContentValues();
         values.put(TodoTable.COLUMN_NAME, description);
 
+        //doInBackground
         if (todoUri == null) {
             todoUri = getContentResolver().insert(
                     MyTodoContentProvider.CONTENT_URI, values);
@@ -118,7 +117,7 @@ public class TodoDetailActivity extends AppCompatActivity {
     }
 
     private void makeToast() {
-        Toast.makeText(TodoDetailActivity.this, "Please add a name",
+        Toast.makeText(TodoDetailActivity.this, R.string.add_name_toast,
                 Toast.LENGTH_LONG).show();
     }
 }

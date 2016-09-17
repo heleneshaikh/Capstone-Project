@@ -62,5 +62,6 @@
     <string name="press_long">Press long to delete an item</string>
     <string name="img_piggy">image of a piggy bank</string>
     <string name="refresh_btn">refresh button</string>
+    <string name="add_name_toast">Please add a name</string>
 </resources><!--    <string name="banner_ad_unit_id">ca-app-pub-4834738949519874/6453478946</string>
 -->
