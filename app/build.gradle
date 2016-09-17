@@ -9,15 +9,15 @@ android {
         applicationId "com.hfad.james"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 6
-        versionName "1.6"
+        versionCode 7
+        versionName "1.7"
     }
     signingConfigs {
         config {
-            keyAlias 'MyKey'
+            keyAlias 'myandroidkey'
+            storePassword 'Pixie1988'
             keyPassword 'James1988'
             storeFile file('../keystore.jks')
-            storePassword 'Pixie1988'
         }
     }
     buildTypes {
