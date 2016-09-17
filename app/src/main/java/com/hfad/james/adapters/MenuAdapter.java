@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
  * Created by heleneshaikh on 30/08/16.
  */
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
+    //todo layout tablet
     ArrayList<Items> itemList = new ArrayList<>();
     @BindView(R.id.menu_item)
     public TextView item_title;
