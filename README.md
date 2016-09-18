@@ -17,7 +17,7 @@ Requirements
 - App provides a widget to on the home screen so that users can track their ordered amount on the home screen.
 - App integrates two or more Google services: Firebase Admob, Firebase Database, Google In-App-Billing
 - Each service imported in the build.gradle is used in the app.
-Admob displays test ads. 
+- Admob displays test ads. 
 - App theme extends AppCompat.
 - App uses an app bar and associated toolbars.
 - App uses standard and simple transitions between activities.
