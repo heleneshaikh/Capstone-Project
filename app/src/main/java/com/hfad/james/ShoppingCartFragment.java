@@ -1,6 +1,11 @@
 package com.hfad.james;
 
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +41,7 @@ public class ShoppingCartFragment extends Fragment {
     TextView totalPrice;
     @BindView(R.id.order_button)
     Button orderButton;
+    public static final String PRICE = "price";
 
     public ShoppingCartFragment() {
     }
@@ -83,5 +89,19 @@ public class ShoppingCartFragment extends Fragment {
     public void onPriceEvent(TotalPriceEvent event) {
         double price = event.totalPrice;
         totalPrice.setText(getString(R.string.set_price,price));
+
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(PRICE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(PRICE, String.valueOf(price));
+        editor.commit();
+
+
+        ComponentName name = new ComponentName(getActivity(), SimpleWidgetProvider.class);
+        int[] ids = AppWidgetManager.getInstance(getActivity()).getAppWidgetIds(name);
+
+        Intent widgetNotify = new Intent(getActivity(), SimpleWidgetProvider.class);
+        widgetNotify.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        widgetNotify.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        getActivity().sendBroadcast(widgetNotify);
     }
 }

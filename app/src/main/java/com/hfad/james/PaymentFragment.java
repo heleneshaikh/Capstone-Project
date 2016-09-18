@@ -62,7 +62,6 @@ public class PaymentFragment extends Fragment {
         super.onStart();
         EventBus.getDefault().register(this);
 
-
 //        helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
 //        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
 //            @Override
@@ -82,6 +81,7 @@ public class PaymentFragment extends Fragment {
         LinearLayout relativeLayout = (LinearLayout) inflater.inflate(R.layout.fragment_payment, container, false);
 
         ButterKnife.bind(this, relativeLayout);
+
         Firebase ref = new Firebase("https://james-5d3ae.firebaseio.com/");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -113,19 +113,7 @@ public class PaymentFragment extends Fragment {
             }
         });
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences(PRICE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(PRICE, String.valueOf(price));
-        editor.commit();
 
-
-        ComponentName name = new ComponentName(getActivity(), SimpleWidgetProvider.class);
-        int[] ids = AppWidgetManager.getInstance(getActivity()).getAppWidgetIds(name);
-
-        Intent widgetNotify = new Intent(getActivity(), SimpleWidgetProvider.class);
-        widgetNotify.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        widgetNotify.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        getActivity().sendBroadcast(widgetNotify);
 
         return relativeLayout;
     }
@@ -188,12 +176,21 @@ public class PaymentFragment extends Fragment {
     @Subscribe
     public void onPriceEvent(TotalPriceEvent event) {
         price = event.totalPrice;
+        totalPrice.setText(String.valueOf(price));
         //TOTALPRICE
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(PRICE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(PRICE, String.valueOf(price));
+        editor.commit();
+
+
+        ComponentName name = new ComponentName(getActivity(), SimpleWidgetProvider.class);
+        int[] ids = AppWidgetManager.getInstance(getActivity()).getAppWidgetIds(name);
+
         Intent widgetNotify = new Intent(getActivity(), SimpleWidgetProvider.class);
-        widgetNotify.setAction(SimpleWidgetProvider.SET_TOTAL);
-        widgetNotify.putExtra(SimpleWidgetProvider.PRICE, price);
+        widgetNotify.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        widgetNotify.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         getActivity().sendBroadcast(widgetNotify);
-        totalPrice.setText(getString(R.string.set_price, (double) price));
     }
 
     void purchaseFailed() {

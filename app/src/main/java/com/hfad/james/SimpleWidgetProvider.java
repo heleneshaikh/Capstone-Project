@@ -40,13 +40,11 @@ public class SimpleWidgetProvider extends AppWidgetProvider {
             //set image
             remoteViews.setImageViewResource(R.id.piggy_bank, R.drawable.piggy_bank);
 
-
             Intent intent = new Intent(context, SimpleWidgetProvider.class);
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                     0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            //set refresh button
             remoteViews.setOnClickPendingIntent(R.id.refresh_btn, pendingIntent);
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }

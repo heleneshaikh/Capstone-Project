@@ -21,37 +21,36 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrawerActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".DrinkActivity" />
         <activity android:name=".ShoppingCartActivity" />
-        <activity android:name=".TabletMenuActivity" />
         <activity android:name=".PaymentActivity" />
-        <!-- <activity android:name=".DrawerActivity"/> -->
+        <activity android:name=".DrawerActivity" />
         <!--<meta-data-->
-            <!--android:name="com.google.android.gms.wallet.api.enabled"-->
-            <!--android:value="true" />-->
+        <!--android:name="com.google.android.gms.wallet.api.enabled"-->
+        <!--android:value="true" />-->
 
         <activity android:name=".TodosOverviewActivity" />
-        <activity android:name=".TodoDetailActivity"/>
+        <activity android:name=".TodoDetailActivity" />
+
         <provider
             android:name=".contentprovider.MyTodoContentProvider"
-            android:authorities="com.hfad.james.contentprovider" >
-        </provider>
+            android:authorities="com.hfad.james.contentprovider"/>
 
-        <receiver android:name="SimpleWidgetProvider" >
+        <receiver android:name="SimpleWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
+            <meta-data
+                android:name="android.appwidget.provider"
                 android:resource="@xml/simple_widget_info" />
         </receiver>
 

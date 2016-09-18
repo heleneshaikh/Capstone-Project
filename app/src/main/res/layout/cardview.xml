@@ -27,7 +27,7 @@
             android:paddingEnd="5dp"
             android:layout_marginTop="@dimen/tv_margintop"
             android:layout_weight="4"
-            android:textSize="16sp" />
+            android:textSize="@dimen/item_text_size" />
 
         <TextView
             android:id="@+id/price_items"
@@ -37,14 +37,15 @@
             android:layout_marginRight="3dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            android:textSize="15sp" />
+            android:textSize="@dimen/cv_text_size" />
 
         <Button
             android:id="@+id/minus_button"
             style="@style/menu_buttons"
             android:contentDescription="@string/remove_item_description"
             android:gravity="center"
-            android:text="@string/btn_minus" />
+            android:text="@string/btn_minus"
+            android:layout_marginTop="@dimen/mt_button_cv"/>
 
         <TextView
             android:id="@+id/amount"
@@ -54,14 +55,15 @@
             android:layout_marginStart="@dimen/cv_tv_marginleft"
             android:layout_marginTop="@dimen/tv_margintop"
             android:layout_weight="0.5"
-            android:textSize="15sp" />
+            android:textSize="@dimen/cv_text_size" />
 
         <Button
             android:id="@+id/plus_button"
             style="@style/menu_buttons"
             android:contentDescription="@string/add_item_description"
             android:src="@drawable/plus_icon"
-            android:text="@string/btn_plus" />
+            android:text="@string/btn_plus"
+            android:layout_marginTop="@dimen/mt_button_cv"/>
 
         <TextView
             android:id="@+id/total"
@@ -71,7 +73,7 @@
             android:layout_marginStart="@dimen/tv_marginleft"
             android:layout_marginTop="@dimen/tv_margintop"
             android:layout_weight="1"
-            android:textSize="15sp"/>
+            android:textSize="@dimen/cv_text_size"/>
 
     </LinearLayout>
 
