@@ -16,7 +16,8 @@
     <RelativeLayout
         android:layout_weight= "@dimen/shopping_rl_weight"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:id="@+id/total_tv"

@@ -1,6 +1,7 @@
 package com.hfad.james.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -133,7 +134,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
                 item.setTotalPricePerItem(newPrice);
             }
         });
-
         EventBus.getDefault().post(new TotalPriceEvent(calculateTotal()));
     }
 

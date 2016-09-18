@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hfad.james.MenuActivity">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/welcome_to"
+        android:textSize="25sp"
+        android:minLines="2"
+        android:layout_above="@+id/drinks_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="141dp" />
+
+    <Button
+        android:id="@+id/drinks_btn"
+        android:layout_width="@dimen/menu_btn_size"
+        android:layout_height="@dimen/menu_btn_size"
+        android:text="@string/drinks_btn"
+        style="@style/buttons"
+        android:maxLines="1"
+        android:layout_alignTop="@+id/food_button"
+        android:layout_alignRight="@+id/remove_ad_btn"
+        android:layout_alignEnd="@+id/remove_ad_btn" />
+
+    <Button
+        android:id="@+id/food_button"
+        android:layout_width="@dimen/menu_btn_size"
+        android:layout_height="@dimen/menu_btn_size"
+        android:text="@string/food_btn"
+        style="@style/buttons"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/adView"
+        android:layout_alignEnd="@+id/adView" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remove_ads"
+        android:id="@+id/remove_ad_btn"
+        android:layout_above="@+id/adView"
+        android:layout_alignLeft="@+id/adView"
+        android:layout_alignStart="@+id/adView" />
+
+
+</RelativeLayout>
