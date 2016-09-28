@@ -36,18 +36,14 @@ public class ShoppingCartActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-
     public void onClickSendOrder(View view) {
         Toast toast = Toast.makeText(this, R.string.order_sent_toast, Toast.LENGTH_LONG);
         toast.show();
     }
 
-    protected void orderSentToast() {
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -9,13 +9,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/order_recycler"
         android:layout_width="match_parent"
-        android:layout_weight = "@dimen/shopping_rv_weight"
         android:layout_height="0dp"
+        android:layout_weight="6.5"
         tools:context=".ShoppingCartActivity" />
 
     <RelativeLayout
-        android:layout_weight= "@dimen/shopping_rl_weight"
         android:layout_width="match_parent"
+        android:layout_weight="3.5"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="0dp">
@@ -50,10 +50,10 @@
             style="@style/buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:onClick="onClickSendOrder"
             android:text="@string/order_btn"
-            android:layout_marginTop="@dimen/button_marginTop"/>
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </LinearLayout>

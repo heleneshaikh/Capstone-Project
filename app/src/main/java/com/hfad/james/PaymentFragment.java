@@ -37,6 +37,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class PaymentFragment extends Fragment {
+
     @BindView(R.id.payment_recycler)
     RecyclerView recyclerView;
     @BindView(R.id.total_amount_tv)
@@ -53,6 +54,7 @@ public class PaymentFragment extends Fragment {
     static final String ITEM_SKU = "com.hfad.payment";
     double price;
     public static final String PRICE = "price";
+    //TODO app crashes on tablet
 
     public PaymentFragment() {
     }
@@ -78,6 +80,7 @@ public class PaymentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         LinearLayout relativeLayout = (LinearLayout) inflater.inflate(R.layout.fragment_payment, container, false);
 
         ButterKnife.bind(this, relativeLayout);
@@ -112,9 +115,6 @@ public class PaymentFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-
         return relativeLayout;
     }
 
@@ -176,13 +176,12 @@ public class PaymentFragment extends Fragment {
     @Subscribe
     public void onPriceEvent(TotalPriceEvent event) {
         price = event.totalPrice;
-        totalPrice.setText(String.valueOf(price));
+        totalPrice.setText(getString(R.string.set_price,price));
         //TOTALPRICE
         SharedPreferences sharedPref = getActivity().getSharedPreferences(PRICE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(PRICE, String.valueOf(price));
         editor.commit();
-
 
         ComponentName name = new ComponentName(getActivity(), SimpleWidgetProvider.class);
         int[] ids = AppWidgetManager.getInstance(getActivity()).getAppWidgetIds(name);

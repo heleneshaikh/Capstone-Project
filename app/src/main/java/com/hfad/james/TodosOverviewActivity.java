@@ -143,4 +143,11 @@ public class TodosOverviewActivity extends ListActivity implements
     public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
         return null;
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TodosOverviewActivity.this, PaymentActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

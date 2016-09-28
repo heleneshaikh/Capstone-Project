@@ -22,6 +22,4 @@ public class PaymentActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void onClickPay(View view) {
-    }
 }

@@ -2,26 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:orientation="vertical"
     android:weightSum="10">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/payment_recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6.5"
-        tools:context=".PaymentActivity"
-        android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@android:color/white"/>
+        android:layout_marginRight="10dp"
+        android:layout_weight="6.5"
+        android:background="@android:color/white"
+        tools:context=".PaymentActivity" />
 
     <RelativeLayout
         android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_weight="3.5"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:layout_weight="3.5">
 
         <TextView
             android:id="@+id/total_tv"
@@ -29,60 +29,64 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/shopping_tv_marginLeft"
+            android:layout_marginStart="@dimen/shopping_tv_marginLeft"
+            android:layout_marginTop="0dp"
             android:text="@string/total"
             android:textSize="20sp"
-            android:textStyle="bold|italic"
-            android:layout_marginStart="@dimen/shopping_tv_marginLeft"
-            android:layout_marginLeft="@dimen/shopping_tv_marginLeft"
-            android:layout_marginBottom="20dp"/>
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/total_amount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/total_tv"
+            android:layout_alignEnd="@+id/app_payment_btn"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_alignRight="@+id/app_payment_btn"
             android:layout_alignTop="@+id/total_tv"
+            android:layout_marginEnd="@dimen/shopping_tv_marginRight"
+            android:layout_marginRight="@dimen/shopping_tv_marginRight"
             android:textSize="20sp"
-            android:textStyle="bold|italic"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp" />
+            android:textStyle="bold|italic" />
 
         <Button
             android:id="@+id/mark_paid_btn"
             style="@style/buttons"
-            android:padding="@dimen/shopping_btn_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mark_as_paid_btn"
-            android:layout_below="@+id/total_tv"
             android:layout_alignLeft="@+id/total_tv"
-            android:layout_alignStart="@+id/total_tv" />
+            android:layout_alignStart="@+id/total_tv"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/shopping_btn_padding"
+            android:text="@string/mark_as_paid_btn" />
 
         <Button
             android:id="@+id/app_payment_btn"
             style="@style/buttons"
-            android:padding="@dimen/shopping_btn_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onClickPay"
-            android:text="@string/pay_with_app_btn"
             android:layout_alignTop="@+id/mark_paid_btn"
-            android:layout_toRightOf="@+id/mark_paid_btn"
-            android:layout_toEndOf="@+id/mark_paid_btn"
             android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp"/>
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@+id/mark_paid_btn"
+            android:layout_toRightOf="@+id/mark_paid_btn"
+            android:onClick="onClickPay"
+            android:padding="@dimen/shopping_btn_padding"
+            android:text="@string/pay_with_app_btn" />
 
         <Button
             android:id="@+id/resto_list_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_resto_btn"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentStart="true"
+            android:text="@string/add_resto_btn" />
+
 
     </RelativeLayout>
 

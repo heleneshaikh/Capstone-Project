@@ -2,6 +2,7 @@ package com.hfad.james;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -117,5 +118,12 @@ public class TodoDetailActivity extends AppCompatActivity {
     private void makeToast() {
         Toast.makeText(TodoDetailActivity.this, R.string.add_name_toast,
                 Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TodoDetailActivity.this, PaymentActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

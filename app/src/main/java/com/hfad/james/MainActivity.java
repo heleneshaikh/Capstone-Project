@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         if (isOnline()) {
             IntentIntegrator intentIntegrator = new IntentIntegrator(this);
             intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-            intentIntegrator.setPrompt("scan");
             intentIntegrator.setCameraId(0);
             intentIntegrator.setBeepEnabled(true);
             intentIntegrator.setBarcodeImageEnabled(false);
@@ -62,12 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 if (!isTablet) {
                     Intent intent = new Intent(this, DrawerActivity.class);
                     startActivity(intent);
-                } else { //TODO: add layout for tablet
-//                    Intent intent = new Intent(this, TabletMenuActivity.class);
-//                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(this, DrawerActivity.class);
+                    startActivity(intent);
                 }
-//                Toast toast = Toast.makeText(this, intentResult.getContents(), Toast.LENGTH_LONG);
-//                toast.show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
