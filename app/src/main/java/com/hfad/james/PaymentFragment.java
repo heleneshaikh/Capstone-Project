@@ -63,17 +63,17 @@ public class PaymentFragment extends Fragment {
         super.onStart();
         EventBus.getDefault().register(this);
 
-//        helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
-//        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-//            @Override
-//            public void onIabSetupFinished(IabResult result) {
-//                if (result.isSuccess()) {
-//                    Log.v(TAG, "setup OK");
-//                } else {
-//                    Log.v(TAG, "setup NOT OK");
-//                }
-//            }
-//        });
+        helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
+        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+            @Override
+            public void onIabSetupFinished(IabResult result) {
+                if (result.isSuccess()) {
+                    Log.v(TAG, "setup OK");
+                } else {
+                    Log.v(TAG, "setup NOT OK");
+                }
+            }
+        });
     }
 
     @Override
@@ -81,7 +81,6 @@ public class PaymentFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         LinearLayout relativeLayout = (LinearLayout) inflater.inflate(R.layout.fragment_payment, container, false);
-
         ButterKnife.bind(this, relativeLayout);
 
         Firebase ref = new Firebase("https://james-5d3ae.firebaseio.com/");
@@ -103,7 +102,7 @@ public class PaymentFragment extends Fragment {
         appPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
+                helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
             }
         });
 
@@ -117,58 +116,58 @@ public class PaymentFragment extends Fragment {
         return relativeLayout;
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (!helper.handleActivityResult(requestCode, resultCode, data)) {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//    }
-//
-//    IabHelper.OnIabPurchaseFinishedListener purchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-//        @Override
-//        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-//            if (result.isFailure()) {
-//                purchaseFailed();
-//            } else if (purchase.getSku().equals(ITEM_SKU)) {
-//                consumeItem();
-//            }
-//        }
-//    };
-//
-//    private void consumeItem() {
-//        helper.queryInventoryAsync(receivedInventoryListener);
-//    }
-//
-//    IabHelper.QueryInventoryFinishedListener receivedInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-//        @Override
-//        public void onQueryInventoryFinished(IabResult result, Inventory inv) {
-//            if (result.isSuccess()) {
-//                helper.consumeAsync(inv.getPurchase(ITEM_SKU), consumeFinishedListener);
-//            } else {
-//                purchaseFailed();
-//            }
-//        }
-//    };
-//
-//    IabHelper.OnConsumeFinishedListener consumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
-//        @Override
-//        public void onConsumeFinished(Purchase purchase, IabResult result) {
-//            if (result.isSuccess()) {
-//                Toast toast = Toast.makeText(getActivity(), R.string.thanks_toast, Toast.LENGTH_LONG);
-//                toast.show();
-//            } else {
-//               purchaseFailed();
-//            }
-//        }
-//    };
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (!helper.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    IabHelper.OnIabPurchaseFinishedListener purchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+        @Override
+        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+            if (result.isFailure()) {
+                purchaseFailed();
+            } else if (purchase.getSku().equals(ITEM_SKU)) {
+                consumeItem();
+            }
+        }
+    };
+
+    private void consumeItem() {
+        helper.queryInventoryAsync(receivedInventoryListener);
+    }
+
+    IabHelper.QueryInventoryFinishedListener receivedInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
+        @Override
+        public void onQueryInventoryFinished(IabResult result, Inventory inv) {
+            if (result.isSuccess()) {
+                helper.consumeAsync(inv.getPurchase(ITEM_SKU), consumeFinishedListener);
+            } else {
+                purchaseFailed();
+            }
+        }
+    };
+
+    IabHelper.OnConsumeFinishedListener consumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
+        @Override
+        public void onConsumeFinished(Purchase purchase, IabResult result) {
+            if (result.isSuccess()) {
+                Toast toast = Toast.makeText(getActivity(), R.string.thanks_toast, Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+               purchaseFailed();
+            }
+        }
+    };
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        if (helper != null) {
-//            helper.dispose();
-//            helper = null;
-//        }
+        if (helper != null) {
+            helper.dispose();
+            helper = null;
+        }
         EventBus.getDefault().unregister(this);
     }
 

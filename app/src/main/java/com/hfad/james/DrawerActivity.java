@@ -51,11 +51,6 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
         setContentView(R.layout.activity_drawer);
         ButterKnife.bind(this);
 
-        String android_id = Settings.Secure.getString(this.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        Log.v("AndroidId", "Android ID : " + android_id);
-
-
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt("position");
             setActionBarTitle(currentPosition);

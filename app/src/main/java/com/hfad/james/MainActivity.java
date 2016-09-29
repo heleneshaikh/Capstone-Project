@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
-
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -53,18 +51,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (intentResult != null) {
-            if (intentResult.getContents() == null) {
+            if (intentResult.getContents() != null) {
+                Intent intent = new Intent(this, DrawerActivity.class);
+                startActivity(intent);
+            } else {
                 Toast toast = Toast.makeText(this, R.string.cancel_scan_toast, Toast.LENGTH_LONG);
                 toast.show();
-            } else {
-                boolean isTablet = getResources().getBoolean(R.bool.isTablet);
-                if (!isTablet) {
-                    Intent intent = new Intent(this, DrawerActivity.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(this, DrawerActivity.class);
-                    startActivity(intent);
-                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -78,6 +70,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return false;
         }
-
     }
 }
