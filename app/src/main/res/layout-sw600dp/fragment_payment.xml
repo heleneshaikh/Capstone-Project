@@ -51,10 +51,10 @@
             android:layout_height="100dp"
             android:text="@string/mark_as_paid_btn"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/app_payment_btn"
-            android:layout_toStartOf="@+id/app_payment_btn"
-            android:layout_marginRight="74dp"
-            android:layout_marginEnd="74dp" />
+            android:layout_toRightOf="@+id/total_tv"
+            android:layout_toEndOf="@+id/total_tv"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp" />
 
         <Button
             android:id="@+id/app_payment_btn"
@@ -64,11 +64,11 @@
             android:layout_height="100dp"
             android:onClick="onClickPay"
             android:text="@string/pay_with_app_btn"
+            android:layout_marginRight="104dp"
+            android:layout_marginEnd="104dp"
             android:layout_alignTop="@+id/mark_paid_btn"
             android:layout_toLeftOf="@+id/total_amount_tv"
-            android:layout_toStartOf="@+id/total_amount_tv"
-            android:layout_marginRight="182dp"
-            android:layout_marginEnd="182dp" />
+            android:layout_toStartOf="@+id/total_amount_tv" />
 
         <Button
             android:id="@+id/resto_list_btn"

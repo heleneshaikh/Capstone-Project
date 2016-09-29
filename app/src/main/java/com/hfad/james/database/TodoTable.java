@@ -7,18 +7,16 @@ import android.util.Log;
  * Created by heleneshaikh on 16/09/16.
  */
 public class TodoTable {
-    // Database table
+
     public static final String TABLE_TODO = "todo";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
 
-    // Database creation SQL statement
     private static final String DATABASE_CREATE = "create table "
             + TABLE_TODO
             + "("
             + COLUMN_ID + " integer primary key autoincrement, "
-            + COLUMN_NAME
-            + " text not null"
+            + COLUMN_NAME + " text not null"
             + ");";
 
     public static void onCreate(SQLiteDatabase database) {

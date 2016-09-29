@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
+
 import com.hfad.james.database.TodoDatabaseHelper;
 import com.hfad.james.database.TodoTable;
 
@@ -22,27 +23,19 @@ import com.hfad.james.database.TodoTable;
 public class MyTodoContentProvider extends ContentProvider {
 
     private TodoDatabaseHelper database;
-
     private static final int TODOS = 10;
     private static final int TODO_ID = 20;
-
     private static final String AUTHORITY = "com.hfad.james.contentprovider";
-
     private static final String BASE_PATH = "todos";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + BASE_PATH);
-
-    public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
-            + "/todos";
     public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
             + "/todo";
-
-    private static final UriMatcher sURIMatcher = new UriMatcher(
-            UriMatcher.NO_MATCH);
+    private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH, TODOS);
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", TODO_ID);
+        URI_MATCHER.addURI(AUTHORITY, BASE_PATH, TODOS);
+        URI_MATCHER.addURI(AUTHORITY, BASE_PATH + "/#", TODO_ID);
     }
 
     @Override
@@ -56,12 +49,10 @@ public class MyTodoContentProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
 
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-
         checkColumns(projection);
-
         queryBuilder.setTables(TodoTable.TABLE_TODO);
 
-        int uriType = sURIMatcher.match(uri);
+        int uriType = URI_MATCHER.match(uri);
         switch (uriType) {
             case TODOS:
                 break;
@@ -88,9 +79,9 @@ public class MyTodoContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        int uriType = sURIMatcher.match(uri);
+        int uriType = URI_MATCHER.match(uri);
         SQLiteDatabase sqlDB = database.getWritableDatabase();
-        long id = 0;
+        long id;
         switch (uriType) {
             case TODOS:
                 id = sqlDB.insert(TodoTable.TABLE_TODO, null, values);
@@ -104,7 +95,7 @@ public class MyTodoContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        int uriType = sURIMatcher.match(uri);
+        int uriType = URI_MATCHER.match(uri);
         SQLiteDatabase sqlDB = database.getWritableDatabase();
         int rowsDeleted = 0;
         switch (uriType) {
@@ -138,7 +129,7 @@ public class MyTodoContentProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
 
-        int uriType = sURIMatcher.match(uri);
+        int uriType = URI_MATCHER.match(uri);
         SQLiteDatabase sqlDB = database.getWritableDatabase();
         int rowsUpdated = 0;
         switch (uriType) {
@@ -172,8 +163,8 @@ public class MyTodoContentProvider extends ContentProvider {
     }
 
     private void checkColumns(String[] projection) {
-        String[] available = { TodoTable.COLUMN_NAME,
-                TodoTable.COLUMN_ID };
+        String[] available = {TodoTable.COLUMN_NAME,
+                TodoTable.COLUMN_ID};
         if (projection != null) {
             HashSet<String> requestedColumns = new HashSet<>(
                     Arrays.asList(projection));
@@ -187,5 +178,4 @@ public class MyTodoContentProvider extends ContentProvider {
             }
         }
     }
-
 }

@@ -54,7 +54,6 @@ public class PaymentFragment extends Fragment {
     static final String ITEM_SKU = "com.hfad.payment";
     double price;
     public static final String PRICE = "price";
-    //TODO app crashes on tablet
 
     public PaymentFragment() {
     }
@@ -177,7 +176,7 @@ public class PaymentFragment extends Fragment {
     public void onPriceEvent(TotalPriceEvent event) {
         price = event.totalPrice;
         totalPrice.setText(getString(R.string.set_price,price));
-        //TOTALPRICE
+
         SharedPreferences sharedPref = getActivity().getSharedPreferences(PRICE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(PRICE, String.valueOf(price));

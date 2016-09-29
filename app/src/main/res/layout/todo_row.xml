@@ -12,8 +12,8 @@
         android:layout_marginRight="@dimen/iv_marginLET"
         android:layout_marginEnd="@dimen/iv_marginLET"
         android:layout_marginTop="@dimen/iv_marginLET"
-        android:contentDescription="@string/star_icon"
-        android:src="@drawable/ic_grade" />
+        android:contentDescription="@string/list_icon"
+        android:src="@drawable/chef" />
 
     <TextView
         android:id="@+id/label"
@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:lines="1"
-        android:text="@+id/TextView01"
         android:textSize="16sp"/>
 
 </LinearLayout>

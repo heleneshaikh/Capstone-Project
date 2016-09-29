@@ -47,14 +47,12 @@ public class TodoDetailActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle(R.string.resto_to_do);
         }
-        // check from the saved Instance
+
         todoUri = (bundle == null) ? null : (Uri) bundle
                 .getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
 
-        // Or passed from the other activity
         if (extras != null) {
-            todoUri = extras
-                    .getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
+            todoUri = extras.getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
 
             fillData(todoUri);
         }
@@ -72,7 +70,7 @@ public class TodoDetailActivity extends AppCompatActivity {
     }
 
     private void fillData(Uri uri) {
-        String[] projection = { TodoTable.COLUMN_NAME };
+        String[] projection = {TodoTable.COLUMN_NAME};
         Cursor cursor = getContentResolver().query(uri, projection, null, null,
                 null);
         if (cursor != null) {
@@ -107,12 +105,8 @@ public class TodoDetailActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(TodoTable.COLUMN_NAME, description);
 
-        if (todoUri == null) {
-            todoUri = getContentResolver().insert(
-                    MyTodoContentProvider.CONTENT_URI, values);
-        } else {
-            getContentResolver().update(todoUri, values, null, null);
-        }
+        SaveToDatabase saveToDatabase = new SaveToDatabase();
+        saveToDatabase.execute(values);
     }
 
     private void makeToast() {
@@ -125,5 +119,18 @@ public class TodoDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(TodoDetailActivity.this, PaymentActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
+
+        @Override
+        protected Void doInBackground(ContentValues... contentValues) {
+            if (todoUri == null) {
+                todoUri = getContentResolver().insert(MyTodoContentProvider.CONTENT_URI, contentValues[0]);
+            } else {
+                getContentResolver().update(todoUri, contentValues[0], null, null);
+            }
+            return null;
+        }
     }
 }

@@ -5,6 +5,7 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,19 +33,17 @@ import butterknife.BindView;
 
 public class TodosOverviewActivity extends ListActivity implements
         LoaderManager.LoaderCallbacks<Cursor>, AppCompatCallback {
+
     @BindView(R.id.include)
     Toolbar toolbar;
     private static final int DELETE_ID = Menu.FIRST + 1;
-    // private Cursor cursor;
     private SimpleCursorAdapter adapter;
-    private AppCompatDelegate delegate;
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        delegate = AppCompatDelegate.create(this, this);
+        AppCompatDelegate delegate = AppCompatDelegate.create(this, this);
         delegate.installViewFactory();
         super.onCreate(savedInstanceState);
         delegate.onCreate(savedInstanceState);
@@ -76,21 +75,19 @@ public class TodosOverviewActivity extends ListActivity implements
     }
 
     private void createTodo() {
-        Intent i = new Intent(this, TodoDetailActivity.class);
-        startActivity(i);
+        Intent intent = new Intent(this, TodoDetailActivity.class);
+        startActivity(intent);
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Intent i = new Intent(this, TodoDetailActivity.class);
+        Intent intent = new Intent(this, TodoDetailActivity.class);
         Uri todoUri = Uri.parse(MyTodoContentProvider.CONTENT_URI + "/" + id);
-        i.putExtra(MyTodoContentProvider.CONTENT_ITEM_TYPE, todoUri);
+        intent.putExtra(MyTodoContentProvider.CONTENT_ITEM_TYPE, todoUri);
 
-        startActivity(i);
+        startActivity(intent);
     }
-
-
 
     private void fillData() {
         String[] from = new String[] { TodoTable.COLUMN_NAME };
@@ -143,6 +140,7 @@ public class TodosOverviewActivity extends ListActivity implements
     public ActionMode onWindowStartingSupportActionMode(ActionMode.Callback callback) {
         return null;
     }
+
 
     @Override
     public void onBackPressed() {

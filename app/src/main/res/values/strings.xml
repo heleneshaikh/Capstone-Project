@@ -55,7 +55,7 @@
     <string name="todo_edit_summary">Summary</string>
     <string name="todo_edit_description">Description</string>
     <string name="todo_edit_confirm">Confirm</string>
-    <string name="star_icon">star icon</string>
+    <string name="list_icon">list icon</string>
     <string name="add_to_restaurant_list">ADD TO RESTAURANT LIST</string>
     <string name="enter_name">enter the name of the restaurant</string>
     <string name="resto_to_do">Resto to do list</string>

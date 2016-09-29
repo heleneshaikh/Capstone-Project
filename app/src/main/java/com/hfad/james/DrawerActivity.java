@@ -1,5 +1,6 @@
 package com.hfad.james;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -86,6 +87,26 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
         }
+
+        getFragmentManager().addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener() {
+                    @Override
+                    public void onBackStackChanged() {
+                        FragmentManager fragmentManager = getFragmentManager();
+                        Fragment fragment = fragmentManager.findFragmentByTag("visible_fragment");
+                        if (fragment instanceof MenuFragment) {
+                            currentPosition = 0;
+                        } else if (fragment instanceof DrinkFragment) {
+                            currentPosition = 1;
+                        } else if (fragment instanceof FoodFragment) {
+                            currentPosition = 2;
+                        } else if (fragment instanceof ShoppingCartFragment) {
+                            currentPosition = 3;
+                        }
+                        setActionBarTitle(currentPosition);
+                        drawerListView.setItemChecked(currentPosition, true);
+                    }
+                });
     }
 
     @Override
@@ -137,7 +158,7 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
         transaction.addToBackStack(null);
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         setActionBarTitle(position);
-        transaction.replace(R.id.content_frame, fragment);
+        transaction.replace(R.id.content_frame, fragment, "visible_fragment");
         transaction.commit();
 
         drawerLayout.closeDrawer(drawerListView);
