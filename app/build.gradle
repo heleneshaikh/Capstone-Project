@@ -33,6 +33,10 @@ android {
             resValue "string", "my_admob_key", "ca-app-pub-4834738949519874/6453478946"
         }
     }
+    lintOptions {
+        abortOnError false
+
+    }
 }
 
 dependencies {
