@@ -56,7 +56,9 @@ public class TodosOverviewActivity extends ListActivity implements
         this.getListView().setDividerHeight(2);
         fillData();
         registerForContextMenu(getListView());
-        createTodo();
+        if (savedInstanceState == null) {
+            createTodo();
+        }
     }
 
     @Override

@@ -36,7 +36,7 @@
         <activity android:name=".PaymentActivity" />
         <!--<activity android:name=".DrawerActivity" />-->
         <activity android:name=".TodosOverviewActivity" />
-        <activity android:name=".TodoDetailActivity" />
+        <activity android:name=".TodoDetailActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
 
         <provider
             android:name=".contentprovider.MyTodoContentProvider"

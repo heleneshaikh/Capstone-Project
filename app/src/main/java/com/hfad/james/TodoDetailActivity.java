@@ -38,24 +38,16 @@ public class TodoDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.todo_edit);
-
         ButterKnife.bind(this);
-
-        Bundle extras = getIntent().getExtras();
+        final Bundle extras = getIntent().getExtras();
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle(R.string.resto_to_do);
         }
 
-        todoUri = (bundle == null) ? null : (Uri) bundle
-                .getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
-
-        if (extras != null) {
-            todoUri = extras.getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
-
-            fillData(todoUri);
-        }
+        todoUri = (bundle == null) ? null : (Uri) bundle.getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
+        nameText.setId(R.id.id_edit);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -63,6 +55,10 @@ public class TodoDetailActivity extends AppCompatActivity {
                     makeToast();
                 } else {
                     setResult(RESULT_OK);
+                    if (extras != null) {
+                        todoUri = extras.getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
+                        fillData(todoUri);
+                    }
                     finish();
                 }
             }
@@ -75,10 +71,8 @@ public class TodoDetailActivity extends AppCompatActivity {
                 null);
         if (cursor != null) {
             cursor.moveToFirst();
-
             nameText.setText(cursor.getString(cursor
                     .getColumnIndexOrThrow(TodoTable.COLUMN_NAME)));
-
             cursor.close();
         }
     }
@@ -87,6 +81,7 @@ public class TodoDetailActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         saveState();
         outState.putParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE, todoUri);
+        outState.putString("edit", nameText.getText().toString());
     }
 
     @Override
@@ -112,17 +107,6 @@ public class TodoDetailActivity extends AppCompatActivity {
     private void makeToast() {
         Toast.makeText(TodoDetailActivity.this, R.string.add_name_toast,
                 Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(TodoDetailActivity.this, PaymentActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onClickSeeList(View view) {
-
     }
 
     private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
