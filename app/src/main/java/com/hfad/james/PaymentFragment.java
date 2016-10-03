@@ -156,7 +156,7 @@ public class PaymentFragment extends Fragment {
                 Toast toast = Toast.makeText(getActivity(), R.string.thanks_toast, Toast.LENGTH_LONG);
                 toast.show();
             } else {
-               purchaseFailed();
+                purchaseFailed();
             }
         }
     };
@@ -174,7 +174,7 @@ public class PaymentFragment extends Fragment {
     @Subscribe
     public void onPriceEvent(TotalPriceEvent event) {
         price = event.totalPrice;
-        totalPrice.setText(getString(R.string.set_price,price));
+        totalPrice.setText(getString(R.string.set_price, price));
 
         SharedPreferences sharedPref = getActivity().getSharedPreferences(PRICE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

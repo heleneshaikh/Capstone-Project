@@ -36,9 +36,11 @@ public class MenuFragment extends Fragment {
     Button drinkButton;
     @BindView(R.id.remove_ad_btn)
     Button removeAdButton;
-    static final String ITEM_SKU = "com.hfad.ad";
+    static final String ITEM_SKU = "com.hfad.ads";
+//    static final String ITEM_SKU = "android.test.purchased";
     IabHelper helper;
     private static final String TAG = "Billing ";
+    private static final String STR = "String ";
     AdView adView;
 
     public MenuFragment() {
@@ -65,6 +67,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
+        Log.v(STR, getString(R.string.my_api_key));
 
         String android_id = Settings.Secure.getString(getActivity().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -73,8 +76,7 @@ public class MenuFragment extends Fragment {
         MobileAds.initialize(getActivity().getApplicationContext(), getString(R.string.my_admob_key));
 
         adView = (AdView) view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
         /* FOR TEST ADS=

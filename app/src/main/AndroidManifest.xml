@@ -35,11 +35,6 @@
         <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".PaymentActivity" />
         <!--<activity android:name=".DrawerActivity" />-->
-
-        <meta-data
-        android:name="com.google.android.gms.wallet.api.enabled"
-        android:value="true" />
-
         <activity android:name=".TodosOverviewActivity" />
         <activity android:name=".TodoDetailActivity" />
 

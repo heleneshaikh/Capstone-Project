@@ -121,6 +121,10 @@ public class TodoDetailActivity extends AppCompatActivity {
         finish();
     }
 
+    public void onClickSeeList(View view) {
+
+    }
+
     private class SaveToDatabase extends AsyncTask<ContentValues, Void, Void> {
 
         @Override
