@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -36,12 +37,15 @@ public class MenuFragment extends Fragment {
     Button drinkButton;
     @BindView(R.id.remove_ad_btn)
     Button removeAdButton;
-    static final String ITEM_SKU = "com.hfad.ads";
-//    static final String ITEM_SKU = "android.test.purchased";
+    @BindView(R.id.ads_container)
+    RelativeLayout container;
+    @BindView(R.id.adView)
+    AdView adView;
+//    static final String ITEM_SKU = "com.hfad.ads";
+    static final String ITEM_SKU = "android.test.purchased";
     IabHelper helper;
     private static final String TAG = "Billing ";
     private static final String STR = "String ";
-    AdView adView;
 
     public MenuFragment() {
     }
@@ -75,20 +79,22 @@ public class MenuFragment extends Fragment {
 
         MobileAds.initialize(getActivity().getApplicationContext(), getString(R.string.my_admob_key));
 
-        adView = (AdView) view.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
 
-        /* FOR TEST ADS=
+//        /* FOR TEST ADS=
+//         */
+
            AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice("b9c49844a26fd47b") //my id
                 .build();
            adView.loadAd(adRequest);
-         */
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        if (prefs.getBoolean("purchased", false)) {
+        boolean sharedP = prefs.getBoolean("purchased", false);
+        if (sharedP) {
+            container.removeView(removeAdButton);
+            container.removeView(adView);
             adView.setVisibility(View.VISIBLE);
             removeAdButton.setVisibility(View.VISIBLE);
         }
@@ -115,7 +121,6 @@ public class MenuFragment extends Fragment {
                 helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
             }
         });
-
         return view;
     }
 
@@ -133,8 +138,6 @@ public class MenuFragment extends Fragment {
                 errorToast();
             } else if (purchase.getSku().equals(ITEM_SKU)) {
                 consumeItem();
-                adView.setVisibility(View.VISIBLE);
-                removeAdButton.setVisibility(View.VISIBLE);
             }
         }
     };
@@ -153,7 +156,6 @@ public class MenuFragment extends Fragment {
         public void onQueryInventoryFinished(IabResult result, Inventory inv) {
             if (result.isSuccess()) {
                 helper.consumeAsync(inv.getPurchase(ITEM_SKU), consumeFinishedListener);
-                adView.setVisibility(View.GONE); //
             } else {
                 errorToast();
             }
@@ -164,8 +166,8 @@ public class MenuFragment extends Fragment {
         @Override
         public void onConsumeFinished(Purchase purchase, IabResult result) {
             if (result.isSuccess()) {
-                adView.setVisibility(View.GONE);
-                removeAdButton.setVisibility(View.GONE);
+                container.removeView(removeAdButton);
+                container.removeView(adView);
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("purchased", true);

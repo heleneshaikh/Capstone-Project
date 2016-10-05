@@ -25,19 +25,21 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "my_api_key", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtkOB4riYLOEka1C2sJ4fYs2Wd64UF4RS12yBOgszG47iJwBCRmXQ2vpHTvdm5iIP5ZibcTcGWxQG+QLqLQi3/D1FMvbLH/X5PAwsVlcy1p5vMvkTfwwiEBMcWghD+stxCdEUcf/NE6gpsi8xGFy4I/fyKqOKNrZm3Rimk053MqlMzZqaVjPBYEs6Wd52eUyTXsP7MamElxWnRXD1dT8iuNXEaGksO2NLJyasjGBWmDW+zypZerWEGpejNnBLiEHdE5PtoAtlWmAahu6JeCylUwazdO1Pa/tErxfz2GDsqyzi1sgVY1KpAfODdv7Vbw2GJ+XaZQh8Y5kYnUEg1GYJ5wIDAQAB"
-            resValue "string", "my_admob_key", "ca-app-pub-4834738949519874/6453478946"
+            resValue "string", "my_admob_key", "ca-app-pub-3940256099942544/6300978111"
             signingConfig signingConfigs.config
         }
         debug {
             resValue "string", "my_api_key", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtkOB4riYLOEka1C2sJ4fYs2Wd64UF4RS12yBOgszG47iJwBCRmXQ2vpHTvdm5iIP5ZibcTcGWxQG+QLqLQi3/D1FMvbLH/X5PAwsVlcy1p5vMvkTfwwiEBMcWghD+stxCdEUcf/NE6gpsi8xGFy4I/fyKqOKNrZm3Rimk053MqlMzZqaVjPBYEs6Wd52eUyTXsP7MamElxWnRXD1dT8iuNXEaGksO2NLJyasjGBWmDW+zypZerWEGpejNnBLiEHdE5PtoAtlWmAahu6JeCylUwazdO1Pa/tErxfz2GDsqyzi1sgVY1KpAfODdv7Vbw2GJ+XaZQh8Y5kYnUEg1GYJ5wIDAQAB"
-            resValue "string", "my_admob_key", "ca-app-pub-4834738949519874/6453478946"
+            resValue "string", "my_admob_key", "ca-app-pub-3940256099942544/6300978111"
+        }
+        lintOptions {
+            abortOnError false
+
         }
     }
-    lintOptions {
-        abortOnError false
-
-    }
+//    ca-app-pub-4834738949519874/6453478946"
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
