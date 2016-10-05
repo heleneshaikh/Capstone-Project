@@ -41,11 +41,12 @@ public class MenuFragment extends Fragment {
     RelativeLayout container;
     @BindView(R.id.adView)
     AdView adView;
-//    static final String ITEM_SKU = "com.hfad.ads";
+    //    static final String ITEM_SKU = "com.hfad.ads";
     static final String ITEM_SKU = "android.test.purchased";
     IabHelper helper;
     private static final String TAG = "Billing ";
     private static final String STR = "String ";
+    private static final String CONSUMPTION = "consumption";
 
     public MenuFragment() {
     }
@@ -85,19 +86,16 @@ public class MenuFragment extends Fragment {
 //        /* FOR TEST ADS=
 //         */
 
-           AdRequest adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice("b9c49844a26fd47b") //my id
                 .build();
-           adView.loadAd(adRequest);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        boolean sharedP = prefs.getBoolean("purchased", false);
-        if (sharedP) {
-            container.removeView(removeAdButton);
-            container.removeView(adView);
-            adView.setVisibility(View.VISIBLE);
-            removeAdButton.setVisibility(View.VISIBLE);
-        }
+        adView.loadAd(adRequest);
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//        boolean b = prefs.getBoolean("purchased", false);
+//        if (b) {
+//            container.removeAllViews();
+//        }
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +124,7 @@ public class MenuFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.v("onActivityResult", String.valueOf(resultCode));
         if (!helper.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -134,6 +133,7 @@ public class MenuFragment extends Fragment {
     IabHelper.OnIabPurchaseFinishedListener purchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         @Override
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+            Log.v("onIabPurchase", result.toString());
             if (result.isFailure()) {
                 errorToast();
             } else if (purchase.getSku().equals(ITEM_SKU)) {
@@ -154,6 +154,7 @@ public class MenuFragment extends Fragment {
     IabHelper.QueryInventoryFinishedListener receivedInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
         @Override
         public void onQueryInventoryFinished(IabResult result, Inventory inv) {
+            Log.v("QueryInventory", result.toString());
             if (result.isSuccess()) {
                 helper.consumeAsync(inv.getPurchase(ITEM_SKU), consumeFinishedListener);
             } else {
@@ -166,8 +167,9 @@ public class MenuFragment extends Fragment {
         @Override
         public void onConsumeFinished(Purchase purchase, IabResult result) {
             if (result.isSuccess()) {
-                container.removeView(removeAdButton);
-                container.removeView(adView);
+                Log.v(CONSUMPTION, "consumption ok" + " purchase" + purchase + "result " + result);
+                container.removeAllViews();
+
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("purchased", true);
@@ -186,6 +188,5 @@ public class MenuFragment extends Fragment {
             helper = null;
         }
     }
-
 
 }
