@@ -89,6 +89,7 @@ public class MenuFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice("b9c49844a26fd47b") //my id
+                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
                 .build();
         adView.loadAd(adRequest);
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -116,11 +117,14 @@ public class MenuFragment extends Fragment {
         removeAdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.v("test", "test"); //OK
                 helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
             }
         });
         return view;
     }
+
+    //WHEN I MAKE A PURCHASE, NONE OF THE LOGS GET PRINTED FROM HERE ON
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
