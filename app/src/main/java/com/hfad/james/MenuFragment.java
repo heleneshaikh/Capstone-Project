@@ -174,10 +174,10 @@ public class MenuFragment extends Fragment {
                 Log.v(CONSUMPTION, "consumption ok" + " purchase" + purchase + "result " + result);
                 container.removeAllViews();
 
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("purchased", true);
-                editor.apply();
+//                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+//                SharedPreferences.Editor editor = preferences.edit();
+//                editor.putBoolean("purchased", true);
+//                editor.apply();
             } else {
                 errorToast();
             }
