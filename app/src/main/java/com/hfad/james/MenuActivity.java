@@ -56,5 +56,4 @@ public class MenuActivity extends AppCompatActivity {
         Log.v("onActivityResult", String.valueOf(resultCode));
         super.onActivityResult(requestCode, resultCode, data);
     }
-
 }
