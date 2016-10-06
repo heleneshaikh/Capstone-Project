@@ -46,6 +46,12 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.v("onActivityResult", String.valueOf(resultCode));
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);

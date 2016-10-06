@@ -40,7 +40,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.v("onActivityResult", String.valueOf(resultCode));
+        Log.v("MenuResult", String.valueOf(resultCode));
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

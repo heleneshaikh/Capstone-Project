@@ -81,15 +81,15 @@ public class MenuFragment extends Fragment {
 
         MobileAds.initialize(getActivity().getApplicationContext(), getString(R.string.my_admob_key));
 
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.loadAd(adRequest);
-
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("b9c49844a26fd47b") //my id
-                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
-                .build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//                .addTestDevice("b9c49844a26fd47b") //my id
+//                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
+//                .build();
+//        adView.loadAd(adRequest);
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +119,7 @@ public class MenuFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.v("onActivityResult", String.valueOf(resultCode));
+        Log.v("onActivityFragment", String.valueOf(resultCode));
         if (!helper.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
