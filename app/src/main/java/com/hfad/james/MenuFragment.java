@@ -55,7 +55,17 @@ public class MenuFragment extends Fragment {
     public void onStart() {
         super.onStart();
         helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
-        helper.enableDebugLogging(true);
+//        helper.enableDebugLogging(true);
+        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+            @Override
+            public void onIabSetupFinished(IabResult result) {
+                if (result.isSuccess()) {
+                    Log.v(TAG, "setup OK");
+                } else {
+                    Log.v(TAG, "setup NOT OK");
+                }
+            }
+        });
     }
 
     @Override

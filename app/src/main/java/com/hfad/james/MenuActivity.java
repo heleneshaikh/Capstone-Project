@@ -20,8 +20,6 @@ import butterknife.ButterKnife;
 public class MenuActivity extends AppCompatActivity {
     @BindView(R.id.include)
     Toolbar toolbar;
-    IabHelper helper;
-    private static final String TAG = "Billing ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +36,6 @@ public class MenuActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.replace(R.id.menu_container, menuFragment);
         transaction.commit();
-
-        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            @Override
-            public void onIabSetupFinished(IabResult result) {
-                if (result.isSuccess()) {
-                    Log.v(TAG, "setup OK");
-                } else {
-                    Log.v(TAG, "setup NOT OK");
-                }
-            }
-        });
     }
 
     @Override
