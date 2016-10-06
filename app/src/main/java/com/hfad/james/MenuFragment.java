@@ -56,7 +56,6 @@ public class MenuFragment extends Fragment {
         super.onStart();
         helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
         helper.enableDebugLogging(true);
-
     }
 
     @Override
