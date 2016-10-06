@@ -55,16 +55,8 @@ public class MenuFragment extends Fragment {
     public void onStart() {
         super.onStart();
         helper = new IabHelper(getActivity(), getString(R.string.my_api_key));
-        helper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            @Override
-            public void onIabSetupFinished(IabResult result) {
-                if (result.isSuccess()) {
-                    Log.v(TAG, "setup OK");
-                } else {
-                    Log.v(TAG, "setup NOT OK");
-                }
-            }
-        });
+        helper.enableDebugLogging(true);
+
     }
 
     @Override
@@ -83,20 +75,12 @@ public class MenuFragment extends Fragment {
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        adView.loadAd(adRequest);
 
-//        /* FOR TEST ADS=
-//         */
-
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//                .addTestDevice("b9c49844a26fd47b") //my id
+                .addTestDevice("b9c49844a26fd47b") //my id
                 .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
                 .build();
         adView.loadAd(adRequest);
-//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//        boolean b = prefs.getBoolean("purchased", false);
-//        if (b) {
-//            container.removeAllViews();
-//        }
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,8 +107,6 @@ public class MenuFragment extends Fragment {
         });
         return view;
     }
-
-    //WHEN I MAKE A PURCHASE, NONE OF THE LOGS GET PRINTED FROM HERE ON
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -173,11 +155,6 @@ public class MenuFragment extends Fragment {
             if (result.isSuccess()) {
                 Log.v(CONSUMPTION, "consumption ok" + " purchase" + purchase + "result " + result);
                 container.removeAllViews();
-
-//                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-//                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putBoolean("purchased", true);
-//                editor.apply();
             } else {
                 errorToast();
             }
@@ -192,5 +169,17 @@ public class MenuFragment extends Fragment {
             helper = null;
         }
     }
+
+
+    /*    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean b = prefs.getBoolean("purchased", false);
+        if (b) {
+            container.removeAllViews();
+       }
+         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+               SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("purchased", true);
+                editor.apply();
+ */
 
 }
