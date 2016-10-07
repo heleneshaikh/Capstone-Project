@@ -107,13 +107,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        removeAdButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.v("test", "test"); //OK
-                helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 10001, purchaseFinishedListener, "purchaseToken");
-            }
-        });
+
         return view;
     }
 
