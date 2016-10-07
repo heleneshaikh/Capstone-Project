@@ -71,8 +71,8 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        ButterKnife.bind(this, view);
+        RelativeLayout relativeLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_menu, container, false);
+        ButterKnife.bind(this, relativeLayout);
         Log.v(STR, getString(R.string.my_api_key));
 
         String android_id = Settings.Secure.getString(getActivity().getContentResolver(),
@@ -107,8 +107,13 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
-        return view;
+        removeAdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                helper.launchPurchaseFlow(getActivity(), ITEM_SKU, 1001, purchaseFinishedListener, "purchaseToken");
+            }
+        });
+        return relativeLayout;
     }
 
     @Override

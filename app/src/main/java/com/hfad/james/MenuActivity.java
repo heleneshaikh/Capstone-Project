@@ -17,9 +17,11 @@ import com.hfad.james.util.IabResult;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class MenuActivity extends AppCompatActivity {
     @BindView(R.id.include)
     Toolbar toolbar;
+    IabHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,9 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.v("MenuResult", String.valueOf(resultCode));
-        super.onActivityResult(requestCode, resultCode, data);
+        Log.v("onActivityFragment", String.valueOf(resultCode));
+        if (!helper.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
