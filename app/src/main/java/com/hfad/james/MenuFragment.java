@@ -2,10 +2,8 @@ package com.hfad.james;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,16 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.hfad.james.util.IabHelper;
-import com.hfad.james.util.IabResult;
-import com.hfad.james.util.Inventory;
-import com.hfad.james.util.Purchase;
-
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,12 +34,10 @@ public class MenuFragment extends Fragment {
     @BindView(R.id.adView)
     AdView adView;
     private static final String STR = "String ";
-
-    //    static final String ITEM_SKU = "com.hfad.ads";
+    boolean isConsumption;
 
     public MenuFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +45,14 @@ public class MenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
 
+        if (savedInstanceState != null) {
+            isConsumption = savedInstanceState.getBoolean("consumption");
+            if (isConsumption) {
+                container.removeAllViews();
+            }
+        }
+
+        EventBus.getDefault().register(this);
         createRequest();
 
         foodButton.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +74,7 @@ public class MenuFragment extends Fragment {
         removeAdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MenuActivity) getActivity()).launchPurchase();
+                ((DrawerActivity) getActivity()).launchPurchase();
             }
         });
         return view;
@@ -99,16 +97,24 @@ public class MenuFragment extends Fragment {
 //        adView.loadAd(adRequest);
     }
 
-
-    /*    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        boolean b = prefs.getBoolean("purchased", false);
-        if (b) {
+    @Subscribe
+    public void onIABEvent(IABEvent event) {
+       isConsumption = event.isConsumptionOK();
+        if (isConsumption) {
             container.removeAllViews();
-       }
-         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-               SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("purchased", true);
-                editor.apply();
- */
+        }
+    }
 
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("consumption", isConsumption);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 }
