@@ -1,9 +1,13 @@
 package com.hfad.james;
 
 
+import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,10 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -46,11 +54,14 @@ public class MenuFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         if (savedInstanceState != null) {
-            isConsumption = savedInstanceState.getBoolean("consumption");
-            if (isConsumption) {
-                container.removeAllViews();
+            boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("consumption", false);
+            if (isConsumptionOK) {
+//                container.removeAllViews();
+                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
+                toast.show();
             }
         }
+
 
         EventBus.getDefault().register(this);
         createRequest();
@@ -99,17 +110,19 @@ public class MenuFragment extends Fragment {
 
     @Subscribe
     public void onIABEvent(IABEvent event) {
-       isConsumption = event.isConsumptionOK();
+        isConsumption = event.isConsumptionOK();
         if (isConsumption) {
             container.removeAllViews();
         }
     }
 
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("consumption", isConsumption);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("consumption", true);
+        editor.apply();
     }
 
     @Override
