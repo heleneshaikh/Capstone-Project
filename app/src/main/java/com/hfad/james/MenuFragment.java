@@ -113,16 +113,16 @@ public class MenuFragment extends Fragment {
         isConsumption = event.isConsumptionOK();
         if (isConsumption) {
             container.removeAllViews();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("consumption", true);
+            editor.apply();
         }
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("consumption", true);
-        editor.apply();
     }
 
     @Override
