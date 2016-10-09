@@ -54,14 +54,13 @@ public class MenuFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         if (savedInstanceState != null) {
-            boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("consumption", false);
+            boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("purchase", false);
             if (isConsumptionOK) {
-//                container.removeAllViews();
-                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
-                toast.show();
+                container.removeAllViews();
+//                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
+//                toast.show();
             }
         }
-
 
         EventBus.getDefault().register(this);
         createRequest();
@@ -123,6 +122,8 @@ public class MenuFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("consumption", false);
+        outState.putBoolean("purchase", isConsumptionOK);
     }
 
     @Override
