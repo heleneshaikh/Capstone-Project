@@ -9,8 +9,8 @@ android {
         applicationId "com.hfad.james"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 12
-        versionName "1.12"
+        versionCode 13
+        versionName "1.13"
     }
     signingConfigs {
         config {
@@ -37,9 +37,7 @@ android {
 
         }
     }
-//    ca-app-pub-4834738949519874/6453478946"
 }
-
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')

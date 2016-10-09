@@ -13,14 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -41,6 +37,7 @@ public class MenuFragment extends Fragment {
     AdView adView;
     private static final String STR = "String ";
     boolean isConsumption;
+    boolean purchased;
 
     public MenuFragment() {
     }
@@ -52,16 +49,19 @@ public class MenuFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         if (savedInstanceState != null) {
-            boolean purchased = savedInstanceState.getBoolean("purchase");
+            purchased = savedInstanceState.getBoolean("purchase");
             if (purchased) {
-//                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
-//                toast.show();
                 container.removeAllViews();
             }
         }
 
         EventBus.getDefault().register(this);
-        createRequest();
+        if (!purchased) {
+            createRequest();
+        } else {
+            removeAdButton.setVisibility(View.INVISIBLE);
+            container.removeAllViews();
+        }
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,12 +97,14 @@ public class MenuFragment extends Fragment {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
-        //        AdRequest adRequest = new AdRequest.Builder()
-//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//                .addTestDevice("b9c49844a26fd47b") //my id
-//                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
-//                .build();
-//        adView.loadAd(adRequest);
+
+ /*  testing:  AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("b9c49844a26fd47b") //my id
+                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
+                .build();
+                 adView.loadAd(adRequest);
+*/
     }
 
     @Subscribe
@@ -122,7 +124,6 @@ public class MenuFragment extends Fragment {
         super.onSaveInstanceState(outState);
         boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("consumption", false);
         outState.putBoolean("purchase", isConsumptionOK);
-        Log.v("test1", String.valueOf(isConsumptionOK));
     }
 
     @Override
