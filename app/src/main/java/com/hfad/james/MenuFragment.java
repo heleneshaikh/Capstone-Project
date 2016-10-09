@@ -1,8 +1,6 @@
 package com.hfad.james;
 
 
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -54,11 +52,11 @@ public class MenuFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         if (savedInstanceState != null) {
-            boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("purchase", false);
-            if (isConsumptionOK) {
-                container.removeAllViews();
+            boolean purchased = savedInstanceState.getBoolean("purchase");
+            if (purchased) {
 //                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
 //                toast.show();
+                container.removeAllViews();
             }
         }
 
@@ -124,6 +122,7 @@ public class MenuFragment extends Fragment {
         super.onSaveInstanceState(outState);
         boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("consumption", false);
         outState.putBoolean("purchase", isConsumptionOK);
+        Log.v("test1", String.valueOf(isConsumptionOK));
     }
 
     @Override
