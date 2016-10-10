@@ -46,7 +46,6 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
     String[] drawerItems;
     int currentPosition;
     IabHelper helper;
-    RelativeLayout container;
     static final String ITEM_SKU = "android.test.purchased";
     private static final String TAG = "Billing ";
     private static final String CONSUMPTION = "consumption";

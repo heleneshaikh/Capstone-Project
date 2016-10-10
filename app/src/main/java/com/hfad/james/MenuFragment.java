@@ -1,8 +1,6 @@
 package com.hfad.james;
 
 
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,14 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,6 +37,7 @@ public class MenuFragment extends Fragment {
     AdView adView;
     private static final String STR = "String ";
     boolean isConsumption;
+    boolean purchased;
 
     public MenuFragment() {
     }
@@ -54,16 +49,19 @@ public class MenuFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         if (savedInstanceState != null) {
-            boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("purchase", false);
-            if (isConsumptionOK) {
+            purchased = savedInstanceState.getBoolean("purchase");
+            if (purchased) {
                 container.removeAllViews();
-//                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
-//                toast.show();
             }
         }
 
         EventBus.getDefault().register(this);
-        createRequest();
+        if (!purchased) {
+            createRequest();
+        } else {
+            removeAdButton.setVisibility(View.INVISIBLE);
+            container.removeAllViews();
+        }
 
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +122,7 @@ public class MenuFragment extends Fragment {
         super.onSaveInstanceState(outState);
         boolean isConsumptionOK = PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("consumption", false);
         outState.putBoolean("purchase", isConsumptionOK);
+        Log.v("test1", String.valueOf(isConsumptionOK));
     }
 
     @Override

@@ -50,8 +50,8 @@ public class PaymentFragment extends Fragment {
     Button goToComments;
     private static final String TAG = "Billing setup";
     IabHelper helper;
-    //    static final String ITEM_SKU = "android.test.purchased";
-    static final String ITEM_SKU = "com.hfad.payment";
+    static final String ITEM_SKU = "android.test.purchased";
+    //    static final String ITEM_SKU = "com.hfad.payment";
     double price;
     public static final String PRICE = "price";
 
