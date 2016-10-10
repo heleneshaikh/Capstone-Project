@@ -41,6 +41,8 @@ public class ShoppingCartFragment extends Fragment {
     TextView totalPrice;
     @BindView(R.id.order_button)
     Button orderButton;
+    @BindView(R.id.payment_btn)
+    Button paymentButton;
     public static final String PRICE = "price";
 
     public ShoppingCartFragment() {
@@ -67,6 +69,14 @@ public class ShoppingCartFragment extends Fragment {
             public void onClick(View view) {
                 Toast toast = Toast.makeText(getActivity(), R.string.order_sent_toast, Toast.LENGTH_LONG);
                 toast.show();
+            }
+        });
+
+        paymentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                startActivity(intent);
             }
         });
 

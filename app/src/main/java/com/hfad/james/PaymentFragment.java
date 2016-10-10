@@ -194,4 +194,6 @@ public class PaymentFragment extends Fragment {
         Toast toast = Toast.makeText(getActivity(), R.string.error_toast, Toast.LENGTH_LONG);
         toast.show();
     }
+
+
 }

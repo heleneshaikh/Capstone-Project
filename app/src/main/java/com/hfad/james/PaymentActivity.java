@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 public class PaymentActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,12 @@ public class PaymentActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.replace(R.id.payment_container, paymentFragment);
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }

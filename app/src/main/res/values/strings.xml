@@ -63,4 +63,5 @@
     <string name="add_name_toast">Please add a name</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4834738949519874/6453478946</string>
     <string name="view_list_restaurants">view list of restaurants</string>
+    <string name="go_to_pay">Go to payment</string>
 </resources>
