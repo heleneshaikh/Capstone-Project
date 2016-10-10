@@ -20,9 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
 import com.google.android.gms.ads.MobileAds;
 import com.hfad.james.util.IabHelper;
 import com.hfad.james.util.IabResult;
@@ -47,6 +45,7 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
     int currentPosition;
     IabHelper helper;
     static final String ITEM_SKU = "android.test.purchased";
+//    static final String ITEM_SKU = "com.hfad.ads";
     private static final String TAG = "Billing ";
     private static final String CONSUMPTION = "consumption";
 
@@ -73,7 +72,6 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.v("onActivityFragment", String.valueOf(resultCode));
         if (!helper.handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -118,7 +116,6 @@ public class DrawerActivity extends AppCompatActivity implements ActivityCompat.
             if (result.isSuccess()) {
                 Log.v(CONSUMPTION, "consumption ok" + " purchase" + purchase + "result " + result);
                 EventBus.getDefault().post(new IABEvent(true));
-
             } else {
                 errorToast();
             }

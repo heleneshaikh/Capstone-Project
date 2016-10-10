@@ -97,12 +97,14 @@ public class MenuFragment extends Fragment {
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
-        //        AdRequest adRequest = new AdRequest.Builder()
-//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//                .addTestDevice("b9c49844a26fd47b") //my id
-//                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
-//                .build();
-//        adView.loadAd(adRequest);
+
+ /*  testing:  AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("b9c49844a26fd47b") //my id
+                .addTestDevice("F88D920791452B0C2A6BA68A4A060E9F")
+                .build();
+                 adView.loadAd(adRequest);
+*/
     }
 
     @Subscribe
