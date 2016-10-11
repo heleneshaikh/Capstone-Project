@@ -31,7 +31,8 @@
         android:layout_marginEnd="131dp"
         android:layout_marginRight="131dp"
         android:maxLines="1"
-        android:text="@string/drinks_btn" />
+        android:text="@string/drinks_btn"
+        android:contentDescription="@string/drinks_content"/>
 
     <Button
         android:id="@+id/food_button"
@@ -42,7 +43,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_toLeftOf="@+id/welcome"
         android:layout_toStartOf="@+id/welcome"
-        android:text="@string/food_btn" />
+        android:text="@string/food_btn"
+        android:contentDescription="@string/click_food"/>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -68,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/adView"
             android:layout_centerHorizontal="true"
-            android:text="@string/remove_ads" />
+            android:text="@string/remove_ads"
+            android:contentDescription="@string/remove_ads_desc"/>
     </RelativeLayout>
 
 </RelativeLayout>

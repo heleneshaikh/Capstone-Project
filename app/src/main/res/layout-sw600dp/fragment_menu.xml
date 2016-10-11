@@ -27,7 +27,8 @@
         android:maxLines="1"
         android:layout_alignTop="@+id/food_button"
         android:layout_alignRight="@+id/remove_ad_btn"
-        android:layout_alignEnd="@+id/remove_ad_btn" />
+        android:layout_alignEnd="@+id/remove_ad_btn"
+        android:contentDescription="@string/drinks_content"/>
 
     <Button
         android:id="@+id/food_button"
@@ -37,7 +38,8 @@
         style="@style/buttons"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/adView"
-        android:layout_alignEnd="@+id/adView" />
+        android:layout_alignEnd="@+id/adView"
+        android:contentDescription="@string/click_food"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -57,7 +59,8 @@
         android:id="@+id/remove_ad_btn"
         android:layout_above="@+id/adView"
         android:layout_alignLeft="@+id/adView"
-        android:layout_alignStart="@+id/adView" />
+        android:layout_alignStart="@+id/adView"
+        android:contentDescription="@string/remove_ads_desc"/>
 
 
 </RelativeLayout>

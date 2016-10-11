@@ -64,4 +64,13 @@
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4834738949519874/6453478946</string>
     <string name="view_list_restaurants">view list of restaurants</string>
     <string name="go_to_pay">Go to payment</string>
+    <string name="go_to_payment">go to payment</string>
+    <string name="order">order now</string>
+    <string name="drinks_content">click to view drinks</string>
+    <string name="click_food">click to view food</string>
+    <string name="remove_ads_desc">click to remove ads</string>
+    <string name="mark_paid">mark as paid button</string>
+    <string name="pay_button">pay with app button</string>
+    <string name="click_resto">click to add your favourite restaurants</string>
+    <string name="submit_btn">submit button</string>
 </resources>

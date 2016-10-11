@@ -54,7 +54,8 @@
             android:text="@string/order_btn"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/total_tv"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/order"/>
 
         <Button
             android:id="@+id/payment_btn"
@@ -66,7 +67,8 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:layout_below="@+id/order_button"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/go_to_payment"/>
     </RelativeLayout>
 
 </LinearLayout>
